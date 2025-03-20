@@ -59,6 +59,34 @@ if ($shows->count() > 0) {
     }
 
 
+    public function getAvailableHalls(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+        ]);
+
+        // تحديد القاعات التي تم حجزها في نفس التاريخ والتوقيت
+        $occupiedHalls = Show::where('date', $request->date)
+            ->where(function ($query) use ($request) {
+                $query->whereBetween('start_time', [$request->start_time, $request->end_time])
+                      ->orWhereBetween('end_time', [$request->start_time, $request->end_time])
+                      ->orWhere(function ($query) use ($request) {
+                          $query->where('start_time', '<=', $request->start_time)
+                                ->where('end_time', '>=', $request->end_time);
+                      });
+            })
+            ->pluck('hall_id');
+
+        // جلب القاعات التي لم يتم حجزها في هذا التوقيت
+        $availableHalls = Hall::whereNotIn('id', $occupiedHalls)->get();
+
+        return response()->json($availableHalls);
+    }
+
+
+
      private function VaildRequest(Request $request)
     {
            $request->validate([
@@ -78,38 +106,44 @@ if ($shows->count() > 0) {
     }
 
 
+
+
     public function store(Request $request)
-    {
-        $this->VaildRequest($request);
+{
+    $this->VaildRequest($request);
 
+    // التحقق من أن القاعة غير محجوزة في نفس الوقت
+    $isOccupied = Show::where('hall_id', $request->hall_id)
+                      ->where('date', $request->date)
+                      ->where(function($query) use ($request) {
+                          $query->whereBetween('start_time', [$request->start_time, $request->End_time])
+                                ->orWhereBetween('end_time', [$request->start_time, $request->End_time]);
+                      })
+                      ->exists();
 
-
-try {
-          $hall=Hall::findorfail($request->hall_id);
-$Show = new  Show();
-$Show->movie_id = strip_tags($request->input('movie_id'));
-$Show->hall_id =strip_tags($request->input('hall_id'));
-$Show->admin_id=Auth::guard('admin')->user()->id;
-$Show->date = strip_tags($request->input('date'));
-$Show->price = strip_tags($request->input('price'));
-$Show->start_time= strip_tags($request->input('start_time'));
-$Show->end_time= strip_tags($request->input('End_time'));
-$Show->remaining_seats=$hall->Capacity;
-    $Show->save();
-} catch (\Exception $e) {
-     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-
-}
-session()->flash('add');
-return redirect()->route('shows.index');
-
-
-
-
-
-
-
+    if ($isOccupied) {
+        return redirect()->back()->withErrors(['hall_id' =>'This hall is busy at this time !'])->withInput();
     }
+
+    try {
+        $hall = Hall::findOrFail($request->hall_id);
+        $Show = new Show();
+        $Show->movie_id = strip_tags($request->input('movie_id'));
+        $Show->hall_id = strip_tags($request->input('hall_id'));
+        $Show->admin_id = Auth::guard('admin')->user()->id;
+        $Show->date = strip_tags($request->input('date'));
+        $Show->price = strip_tags($request->input('price'));
+        $Show->start_time = strip_tags($request->input('start_time'));
+        $Show->end_time = strip_tags($request->input('End_time'));
+        $Show->remaining_seats = $hall->Capacity;
+        $Show->save();
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+
+    session()->flash('add');
+    return redirect()->route('shows.index');
+}
 
 
 
@@ -159,8 +193,13 @@ return redirect()->route('shows.index');
 
     }
 
+
     public function create()
     {
+        $movies = Movie::all();
+        $availableHalls = Hall::all(); // في البداية عرض جميع القاعات
 
+        return view('dashboard.shows.create', compact('movies', 'availableHalls'));
     }
+
 }

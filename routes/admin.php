@@ -42,7 +42,12 @@ Route::middleware(['auth:admin'])->group(function ()   {
     Route::post('movies/search', [moviescontroller::class, 'Search'])->name('movies.Search');
 Route::resource('halls', HallController::class);
 
-Route::resource('shows', ShowController::class);
+
+
+Route::resource('shows', ShowController::class)->except(['show']);
+
+Route::get('shows/getAvailableHalls', [ShowController::class, 'getAvailableHalls'])->name('shows.getAvailableHalls');
+
 Route::post('shows/search', [ShowController::class, 'Search'])->name('shows.Search');
 Route::resource('mangers', MangerController::class);
 Route::post('mangers/search', [MangerController::class, 'Search'])->name('mangers.Search');
