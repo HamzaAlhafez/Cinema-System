@@ -6,6 +6,7 @@ use App\Http\Controllers\user\profilecontroller;
 use App\Http\Controllers\UserShowController;
 
 
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,14 @@ Route::post('showsmoive/search', [UserShowController::class, 'Search'])->name('s
 
 
 
+Route::get('user/profile', function () {
+    return view('user.profile');
+})->name('user.profile');
+
+Route::post('user/password', [UserProfileController::class,'ChangePassword'])->name('user.ChangePassword');
 
 
 
 
-
+Route::patch('/user/update', [UserProfileController::class, 'update'])->name('user.update');
+Route::get('/user/edit', [UserProfileController::class, 'edit'])->name('user.edit');

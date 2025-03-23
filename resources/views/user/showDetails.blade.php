@@ -48,7 +48,7 @@
                             @php
                              $ratingshows=$shows->movie->rating;
 
-                            
+
 
                             @endphp
                             @include('components.rating-stars', ['rating' => $ratingshows])
@@ -70,7 +70,7 @@
             <div class="row">
                 <!-- Start of Movie Main -->
                 <div class="col-lg-8 col-sm-12">
-                    <div class="inner pr50">
+                    < class="inner pr50">
 
                         <!-- Storyline -->
                         <div class="storyline">
@@ -83,12 +83,6 @@
                         <div class="movie-media mt50">
                             <h3 id="reserve-now" class="title">Reserve your ticket!</h3>
                             {{-- {{ ddd($shows->first()->date) }} --}}
-
-
-                                <div class="bg-light p-3 font-weight-bold rounded text-center">
-                                    This service is currently unavailable at our site, check
-                                    back later!
-                                </div>
 
                         </div>
 

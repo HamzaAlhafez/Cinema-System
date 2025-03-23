@@ -12,6 +12,7 @@ use App\Models\Show;
 class UserShowController extends Controller
 {
 
+
     public function index()
     {
        $shows = Show::with(['movie', 'hall'])->get();
@@ -86,6 +87,7 @@ if ($shows->count() > 0) {
 
     public function destroy(string $id)
     {
+
 
     }
 }

@@ -57,7 +57,7 @@
                                         placeholder="Your Password *" required />
                                 </div>
 
-                               
+
 
 
                                 <div class="form-group">
@@ -79,6 +79,11 @@
                                     <a href="{{ route('admin.dashboard.login') }}">admin</a>
                                 </span>
                         </div>
+
+
+
+
+
 
                     </div>
                     <!-- ===== End of Signin wrapper ===== -->

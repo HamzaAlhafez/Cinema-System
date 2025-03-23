@@ -18,7 +18,7 @@
                     class="logo-white">
             </a>
 
-           
+
 
             <!-- ====== Start of #main-nav ====== -->
             <div class="navbar-collapse" id="main-nav">
@@ -60,7 +60,7 @@
                             <a href="" class="btn btn-main btn-effect login-btn">
                                 <i class="icon-user"></i>Hello, {{ Auth::user()->name}}</a>
                             <div class="dropdown-content rounded font-weight-normal">
-                                <a href="">My Account</a>
+                                <a href="{{route('user.profile')}}">My Account</a>
                                 <a href="">My Reservations</a>
 
                                 <form id="logout_form" method="POST" action="{{ route('logout') }}">

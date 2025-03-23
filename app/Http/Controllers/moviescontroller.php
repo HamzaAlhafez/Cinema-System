@@ -42,7 +42,8 @@ class moviescontroller extends Controller
 
             try
        {
-        $movies=Movie::where('title', $textSearch )->get();
+        $movies = Movie::where('title', 'LIKE', "%{$textSearch}%")->get();
+
 
        }
 
