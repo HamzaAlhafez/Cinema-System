@@ -1,0 +1,162 @@
+.gradient-text {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* أضف هذه الأنماط الجديدة */
+.usage-limit {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.requirement-item .text-info {
+    color: #4299e1 !important;
+}
+
+.loyalty-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* باقي الأنماط الأصلية تبقى كما هي */
+.promo-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.promo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ribbon {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    text-align: right;
+}
+
+.ribbon span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 24px;
+    transform: rotate(45deg);
+    width: 135px;
+    display: block;
+    background: #FF6B6B;
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.discount-badge {
+    background: #6a11cb;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.triangle {
+    position: absolute;
+    bottom: -10px;
+    left: 15%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #4a00a0;
+}
+
+.redeem-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.redeem-btn:hover {
+    transform: scale(0.98);
+    box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+}
+
+.disabled-btn {
+    background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+.hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.redeem-btn:hover .hover-effect {
+    left: 100%;
+}
+
+.expired-card {
+    position: relative;
+    opacity: 0.8;
+}
+
+.expired-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .promo-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .discount-badge {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+    }
+}

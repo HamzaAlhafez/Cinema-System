@@ -17,11 +17,15 @@
                             <option value="{{ $moive->id }}">{{ $moive->title }}</option>
                         @endforeach
                     </select>
+                        <label for="hall_id">Hall :</label>
+<select name="hall_id" class="form-control SlectBox">
+                                        <option value="" selected disabled>------</option>
+                                        @foreach($halls as $hall)
+                                            <option value="{{$hall->id}}">{{$hall->hall_name}}</option>
+                                        @endforeach
+                                    </select>
 
-                    <label for="hall_id">Hall :</label>
-                    <select name="hall_id" id="hall_id" class="form-control SlectBox" required>
-                        <option value="" selected disabled>Choose a date and time first</option>
-                    </select>
+
 
                     <label for="price">Price</label>
                     <input type="number" class="form-control" id="price" name="price" style="height:30px" placeholder="price .." step="0.01" required />

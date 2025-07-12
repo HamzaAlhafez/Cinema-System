@@ -1,0 +1,215 @@
+.gradient-animated {
+    background: linear-gradient(45deg, #6a11cb, #2575fc, #00d2ff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 8s ease infinite;
+}
+
+.voucher-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.voucher-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    z-index: -1;
+}
+
+.voucher-card:hover {
+    transform: translateY(-8px) rotateX(5deg) rotateY(-5deg);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.2);
+}
+
+.voucher-glare {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(45deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.15) 50%, 
+        rgba(255,255,255,0) 100%);
+    transform: rotate(-30deg) translate(-50%, -50%);
+    animation: glare 6s infinite;
+}
+
+.voucher-content {
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border-radius: 18px;
+    padding: 1.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.voucher-header {
+    margin-bottom: 1.5rem;
+}
+
+.voucher-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #00d2ff;
+    text-shadow: 0 0 15px rgba(0,210,255,0.3);
+}
+
+.voucher-value small {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    color: #7f8ea3;
+}
+
+.voucher-code {
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+
+.voucher-code:hover {
+    background: rgba(0,0,0,0.4);
+    transform: scale(1.02);
+}
+
+.copy-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    font-size: 0.8rem;
+    color: #00d2ff;
+    transition: all 0.3s;
+}
+
+.voucher-code:hover .copy-hint {
+    transform: translate(-50%, 10px);
+    opacity: 1;
+}
+
+.shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transition: left 0.6s;
+}
+
+.voucher-code:hover .shine {
+    left: 150%;
+}
+
+.voucher-meta {
+    margin: 1.5rem 0;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.meta-item:last-child {
+    border-bottom: none;
+}
+
+.voucher-progress {
+    margin: 2rem 0;
+}
+
+.progress-track {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    position: relative;
+    transition: width 1s ease;
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(255,255,255,0) 100%);
+    animation: glow 2s infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+@keyframes glare {
+    0% { top: -50%; left: -50% }
+    100% { top: 150%; left: 150% }
+}
+
+@keyframes glow {
+    0% { opacity: 0.5 }
+    50% { opacity: 1 }
+    100% { opacity: 0.5 }
+}
+
+.expired .voucher-content {
+    filter: grayscale(0.8);
+    opacity: 0.7;
+}
+
+.empty-state {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106,17,203,0.3);
+}

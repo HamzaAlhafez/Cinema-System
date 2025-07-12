@@ -3,7 +3,7 @@
 @section('content')
     <!-- =============== START OF MOVIE DETAIL INTRO =============== -->
     <section class="movie-detail-intro overlay-gradient ptb100"
-        style="background: url({{ asset('images/branding/posters/movie-detail-bg.webp') }});">
+    style="background: url({{ asset('images/branding/posters/movie-detail-bg.webp') }});">
     </section>
     <!-- =============== END OF MOVIE DETAIL INTRO =============== -->
 
@@ -14,8 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
-                    <div class="movie-poster">
+                       <div class="movie-poster">
                         <img src="{{ asset('imagesmoives/moive/' . $shows->movie->image) }}" style="height: 440px" alt="">
                     </div>
 
@@ -30,29 +29,30 @@
 
 
 
+
                     <div class="movie-details">
                         <h3 class="title">{{ $shows->movie->title }}</h3>
 
                         <ul class="movie-subtext">
-                            <li>Pg-3</li>
+                             <li>Pg-3</li>
                              <li>{{$Categories->title}}</li>
                             <li>{{ $shows->date->format('d M Y') }}</li>
-
 
                         </ul>
 
                         <a href="#reserve-now" class="btn btn-main btn-effect">Get tickets</a>
                         <a href="#" class="btn rate-movie"><i class="icon-heart"></i></a>
-
-                        <div class="rating mt10">
-                            @php
+                         @php
                              $ratingshows=$shows->movie->rating;
 
 
 
                             @endphp
+
+                        <div class="rating mt10">
                             @include('components.rating-stars', ['rating' => $ratingshows])
                             <span>{{ number_format($shows->movie->rating, 1) }}/5</span>
+
                         </div>
                     </div>
 
@@ -62,37 +62,82 @@
             </div>
         </div>
     </section>
+    <!-- =============== End OF MOVIE DETAIL INTRO 2 =============== -->
 
-    <!-- =============== END OF RECOMMENDED MOVIES SECTION =============== -->
-     <section class="movie-detail-main ptb100">
+
+    <!-- =============== START OF MOVIE DETAIL MAIN SECTION =============== -->
+    <section class="movie-detail-main ptb100">
         <div class="container">
 
             <div class="row">
                 <!-- Start of Movie Main -->
                 <div class="col-lg-8 col-sm-12">
-                    < class="inner pr50">
+                    <div class="inner pr50">
 
                         <!-- Storyline -->
                         <div class="storyline">
                             <h3 class="title">Storyline</h3>
 
-                            <p>{{ $shows->movie->storyline }}</p>
+                            <p>{{ $shows->movie->storyline}}</p>
                         </div>
 
                         <!-- Shows -->
                         <div class="movie-media mt50">
                             <h3 id="reserve-now" class="title">Reserve your ticket!</h3>
-                            {{-- {{ ddd($shows->first()->date) }} --}}
+                            @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
+
+                                <table class="table-responsive showtime-table table table-striped table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Start time</th>
+                                            <th scope="col">End time</th>
+                                            <th scope="col">Ticket price</th>
+                                            <th scope="col">Remaining seats</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+
+                                        <tr class="{{ $shows->remaining_seats < 5 ? 'table-danger' : '' }}">
+                                            <th>{{ $shows->date->toDateString() }}</th>
+                                            <th>{{ $shows->start_time->toTimeString() }}</th>
+                                            <th>{{ $shows->end_time->toTimeString() }}</th>
+                                            <td>{{ $shows->price . ' ' . '$' }}
+                                            </td>
+                                            <td>{{ $shows->remaining_seats . '/' . $shows->hall->Capacity}}
+                                            </td>
+                                            <td><a href="#reservation-popup"
+                                                    class="btn btn-second btn-effect open-reservation-popup"
+                                                     onclick="populateUI({{ $shows->id . ',\'' . $shows->date . '\',' . $shows->price . ',' . (auth()->check() ? 'true' : 'false') }})">Reserve</a>
+                                            </td>
+                                        </tr>
+
+                                </table>
+                                @include('components.reservation-modal')
 
                         </div>
 
                     </div>
                 </div>
-                 <div class="col-lg-4 col-sm-12">
+                <!-- End of Movie Main -->
+
+
+                <!-- Start of Sidebar -->
+                <div class="col-lg-4 col-sm-12">
                     <div class="sidebar">
 
                         <!-- Start of Details Widget -->
-                        <aside class="widget widget-movie-details">
+                          <aside class="widget widget-movie-details">
                             <h3 class="title">Details</h3>
 
                             <ul>
@@ -115,6 +160,7 @@
                                 </li>
                             </ul>
                         </aside>
+
                         <!-- End of Details Widget -->
 
                     </div>
@@ -124,6 +170,32 @@
 
         </div>
     </section>
+    <!-- =============== END OF MOVIE DETAIL MAIN SECTION =============== -->
 
+
+
+    <!-- =============== START OF RECOMMENDED MOVIES SECTION =============== -->
+    <section class="recommended-movies bg-light ptb100">
+        <div class="container">
+
+            {{-- <!-- Start of row -->
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <h2 class="title">People who liked this also liked...</h2>
+                </div>
+            </div>
+            <!-- End of row --> --}}
+
+
+            {{-- <!-- Start of Latest Movies Slider -->
+            <div class="owl-carousel recommended-slider mt20">
+
+            </div> --}}
+            <!-- End of Latest Movies Slider -->
+
+        </div>
+    </section>
+    @include('components.flash-message')
+    <!-- =============== END OF RECOMMENDED MOVIES SECTION =============== -->
 
 @endsection

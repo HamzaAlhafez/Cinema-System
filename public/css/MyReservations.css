@@ -1,0 +1,194 @@
+.cinematic-bg {
+    background: radial-gradient(circle at center, #0F2027, #203A43, #2C5364);
+    min-height: 100vh;
+}
+
+.ticket-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.movie-header {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.poster-wrapper {
+    width: 100px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.poster-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.movie-title {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.movie-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: #fff;
+}
+
+.detail-item i {
+    font-size: 1.2rem;
+    color: #4A90E2;
+}
+
+.ticket-actions {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-soft-primary {
+    background: rgba(74, 144, 226, 0.15);
+    color: #4A90E2;
+    border: 1px solid #4A90E2;
+}
+
+.btn-soft-danger {
+    background: rgba(226, 74, 74, 0.15);
+    color: #E24A4A;
+    border: 1px solid #E24A4A;
+}
+
+.neon-title {
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+    position: relative;
+    display: inline-block;
+}
+
+.animated-divider {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4A90E2, transparent);
+    margin: 1rem auto;
+    animation: dividerGlow 2s infinite;
+}
+
+@keyframes dividerGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+
+@media (max-width: 768px) {
+    .movie-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ticket-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+.btn.btn-second {
+    background-color: #87CEEB; 
+    border-color: #87CEEB;
+    color: white; 
+}
+
+.btn.btn-second:hover {
+    background-color: #6BB6DE; 
+    border-color: #6BB6DE;
+}
+.sweetalert-popup {
+    background: #2a2a3c;
+    color: #f0f0f0;
+    border-radius: 15px;
+    border: 1px solid #43425d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sweetalert-confirm {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b) !important;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 10px 25px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+}
+
+.sweetalert-cancel {
+    background: linear-gradient(135deg, #4776E6, #8E54E9) !important;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 10px 25px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+}
+
+.sweetalert-confirm:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+}
+
+.sweetalert-cancel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(71, 118, 230, 0.4);
+}
+
+.swal2-title {
+    color: #e1e1ff !important;
+    font-size: 1.8rem !important;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.swal2-content {
+    color: #c0c0f0 !important;
+    font-size: 1.1rem !important;
+}

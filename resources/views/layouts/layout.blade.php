@@ -12,7 +12,9 @@
 
         @include('layouts.footer')
 
-      
+         @include('layouts.includes')
+
+
     </div>
 
 </body>

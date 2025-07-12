@@ -1,18 +1,51 @@
-/.phpunit.cache
-/node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
+# Laravel & PHP
+bootstrap/cache/*
+.phpunit.result.cache
+.cache
+.dusk.env
+.php_cs.cache
+.phpunit.cache
+
+# Environment
 .env
 .env.backup
 .env.production
+
+# Dependencies
+/node_modules
+/vendor
+composer.lock
+composer.phar
+package-lock.json
+yarn.lock
+
+# Build assets
+/public/hot
+/public/storage
+/public/build/*
+!/public/build/manifest.json
+
+# Storage
+/storage/app/*
+!/storage/app/public/
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# Homestead
 Homestead.json
 Homestead.yaml
-auth.json
+
+# Logs
 npm-debug.log
 yarn-error.log
+
+# IDEs
 /.fleet
 /.idea
 /.vscode
+
+# OS metadata
+.DS_Store
+Thumbs.db

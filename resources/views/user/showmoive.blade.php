@@ -49,11 +49,45 @@
                     <div class="px-3 py-3 py-xl-0"></div>
 
                      <div class="px-2 py-3 py-xl-0"></div>
-                    <input type="submit" value="Filter" class="btn btn-main">
+                    <input type="submit" value="Search" class="btn btn-main">
+                    
+
+
+                   
 
                 </form>
+                <form method="GET" action="{{ route('shows.filterByCategory') }}" class="d-flex">
+    @csrf
+
+    <div class="d-flex align-items-center">
+        <label for="category" class="pr-1 text-nowrap">Category:</label>
+        <select name="category_id" id="category" class="py-1">
+            <option value="">All Categories</option>
+            @foreach (\App\Models\Categorie::all() as $category)
+                <option value="{{ $category->id }}"
+                    {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->title }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-purple ml-2">Filter</button>
+</form>
+            
+             
+
+
+               
+                    
+
+
+                   
+
+                
                      <div class="py-3 py-xl-0"></div>
                        <div>
+                        
                     <!-- Layout Switcher -->
                     <div class="layout-switcher">
                         <a href="#" class="list" x-bind:class="{ 'active': layout === 'list' }"

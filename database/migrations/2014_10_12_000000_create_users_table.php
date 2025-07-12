@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('phone')->unique();
              $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('loyalty_points')->default(0);
             $table->rememberToken();
             $table->timestamps();
+
+          
            
            
         });

@@ -98,7 +98,7 @@
                                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$manger->id}}"><i class="las la-trash"></i></a>
                                                    </td>
                                                </tr>
-                                                {{-- @include('dashboard.movies.edit',compact('Categories'))--}}
+                                                
                                                 @include('dashboard.mangers.delete') 
                                                @endforeach
                                               

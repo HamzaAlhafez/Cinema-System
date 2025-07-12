@@ -37,13 +37,13 @@
 
                     <!-- Menu Item -->
                     <li class="nav-item">
-                        <a class="nav-link" href="">What to Watch?</a>
+                        <a class="nav-link" href="{{route('showsmoive.index')}}">What to Watch?</a>
                     </li>
 
                     <!-- Menu Item -->
                     <li class="nav-item">
-                        <a class="nav-link" href="">Contact us</a>
-                    </li>
+    <a class="nav-link" href="{{ route('chat') }}">Contact us</a>
+</li>
 
                 </ul>
                 <!-- ====== End of Main Menu ====== -->
@@ -61,7 +61,11 @@
                                 <i class="icon-user"></i>Hello, {{ Auth::user()->name}}</a>
                             <div class="dropdown-content rounded font-weight-normal">
                                 <a href="{{route('user.profile')}}">My Account</a>
-                                <a href="">My Reservations</a>
+                                <a href="{{route('tickets.index')}}">My Reservations</a>
+                                <a href="{{route('promocodes.Show')}}">Explore Coupons</a>
+                                <a href="{{route('promocodes.Show.Mypromocodes')}}">MY Coupons</a>
+                                <a>My points {{ Auth::user()->loyalty_points}}</a>
+                                
 
                                 <form id="logout_form" method="POST" action="{{ route('logout') }}">
                                     @csrf

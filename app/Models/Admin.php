@@ -59,4 +59,12 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Show::class);
     }
+    public function Categories()
+    {
+        return $this->hasMany(Categorie::class);
+    }
+    public function Promocodes()
+    {
+        return $this->hasMany(Promocode::class);
+    }
 }

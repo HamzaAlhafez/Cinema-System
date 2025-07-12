@@ -36,9 +36,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','unique:admins'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required','regex:/^09[1-689][0-9]{7}$/' , 'unique:users'],
+            'phone' => ['required','regex:/^09[1-689][0-9]{7}$/' , 'unique:users','unique:admins'],
 
         ],[
             "phone.regex" => "this number is not available on the network . please check the entered number and try again"

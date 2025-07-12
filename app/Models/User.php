@@ -22,6 +22,7 @@ class User extends Authenticatable
         'phone',
         'email',
         'password',
+        'loyalty_points',
     ];
 
     /**
@@ -42,4 +43,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function Ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+    public function LoyaltyTransaction()
+    {
+        return $this->hasMany(LoyaltyTransaction::class);
+    }
+    public function promocodes()
+{
+    return $this->belongsToMany(Promocode::class, 'promocodeusages', 'user_id', 'promocode_id')
+                ->withTimestamps();
+}
+    
+    public function Promocodeusage()
+    {
+        return $this->hasMany(Promocodeusage::class);
+    }
+    public function Purchasepromocodes()
+    {
+        return $this->hasMany(Purchasepromocode::class);
+    }
 }

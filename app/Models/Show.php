@@ -17,7 +17,7 @@ class Show extends Model
         'start_time',
         'end_time',
         'remaining_seats',
-        
+
     ];
      protected $casts = [
         'date' => 'date',
@@ -36,7 +36,15 @@ class Show extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    public function Ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+    public function SeatReservation()
+    {
+        return $this->hasMany(SeatReservation::class);
+    }
 
-    
+
 
 }

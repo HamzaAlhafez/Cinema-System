@@ -8,12 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
-    protected $fillable = ['title'];
-     const CATEGORIES = ['Action', 'Drama', 'Comedy', 'Romance', 'Horror'];
+   
+    protected $fillable = [
+        'title',
+        'admin_id',
+    ];
+      
+
+    
+     
 
    
      public function Movies()
     {
         return $this->hasMany(Movie::class);
     }
+    public function Admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+    
 }

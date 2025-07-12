@@ -10,6 +10,8 @@ use App\Http\Controllers\HallController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\MangerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PromoCodeController;
+use App\Http\Controllers\CategorieController;
 
 
 
@@ -44,6 +46,7 @@ Route::resource('halls', HallController::class);
 
 
 
+
 Route::resource('shows', ShowController::class)->except(['show']);
 
 Route::get('shows/getAvailableHalls', [ShowController::class, 'getAvailableHalls'])->name('shows.getAvailableHalls');
@@ -58,8 +61,11 @@ Route::post('Admins/Contactus', [AdminController::class, 'ContactUs'])->name('Ad
 Route::get('admin/dashboard/Contactus', [AdminController::class, 'ContactusShowform'])->name('admin.dashboard.Contactus');
 
 Route::get('admin/dashboard/ViewProfile', [AdminController::class, 'Viewproifle'])->name('admin.dashboard.ViewProfile');
+Route::resource('promocodes', PromoCodeController::class);
+Route::resource('categories',CategorieController::class);
 
 });
+
 
 
 

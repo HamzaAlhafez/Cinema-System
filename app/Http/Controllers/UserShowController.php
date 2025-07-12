@@ -15,8 +15,19 @@ class UserShowController extends Controller
 
     public function index()
     {
-       $shows = Show::with(['movie', 'hall'])->get();
+        
+        $shows = Show::with(['movie', 'hall'])
+        ->where(function ($query) {
+            $query->whereDate('date', '>', now()->toDateString())
+                ->orWhere(function ($query) {
+                    $query->whereDate('date', '=', now()->toDateString())
+                        ->whereTime('end_time', '>', now()->toTimeString());
+                });
+        })
+        ->get();
+
     return view('user.showmoive', compact('shows'));
+       
     }
 
 
@@ -42,12 +53,34 @@ try {
 if ($shows->count() > 0) {
     return view('user.showmoive', compact('shows'));
 } else {
-     session()->flash('SearchFaild');
+     
     return redirect()->route('showsmoive.index')->with(['flash' => 'error', 'message' => 'Search Faild Please try again']);
 }
 
 
 
+    }
+    public function filterByCategory(Request $request)
+    {
+        $request->validate([
+            'category_id' => 'required|integer',
+        ], [
+            'category_id.required' => 'You must select a category.',
+            
+        ]);
+    
+        $categoryId = $request->input('category_id');
+    
+        try {
+            
+            $shows = Show::whereHas('movie', function ($query) use ($categoryId) {
+                $query->where('categorie_id', $categoryId);
+            })->with('movie', 'hall')->get();
+    
+            return view('user.showmoive', compact('shows'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
 

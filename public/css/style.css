@@ -4361,6 +4361,7 @@ ul.blog-posts-widget .blog-content .blog-text span {
 
 /* Filters */
 
+
 .layout-switcher a {
     display: inline-block;
     width: 40px;
@@ -5290,6 +5291,11 @@ main .col-md-12:last-of-type .movie-list-2 {
     text-align: center;
 }
 
+.btn-purple {
+    background-color: #9352b3;
+    color: white;
+    border-color: #9352b3;
+}
 .movie-list-2 .listing-content .inner {
     position: absolute;
     width: 100%;
@@ -5860,6 +5866,8 @@ main .col-md-12:last-of-type .movie-list-2 {
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Reservation popup css */
+
+
 .reservation-container * {
   box-sizing: border-box;
 }
@@ -5899,6 +5907,9 @@ main .col-md-12:last-of-type .movie-list-2 {
 .seat.selected {
   background-color: green;
 }
+.seat.number {
+    background-color: #00bcd4 ;
+  }
 
 .seat.sold {
   background-color: #fff;
@@ -5968,3 +5979,47 @@ main .col-md-12:last-of-type .movie-list-2 {
 .reservation-movie-details {
     width: 45%;
 }
+.coupon-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#coupon-message .alert {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.input-group {
+    margin-top: 8px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/********** MyReservations **********/

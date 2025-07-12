@@ -1,0 +1,320 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(circle at center, #0F2027, #203A43, #2C5364);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation-container {
+    background-color: #242333;
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.tab {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.tab h2 {
+    font-size: 2.2rem;
+    color: #87CEEB;
+    text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+    margin-bottom: 10px;
+}
+
+.reservation-movie-details {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.reservation-movie-details div {
+    font-size: 1.1rem;
+}
+
+.reservation-movie-details strong {
+    color: #87CEEB;
+    font-size: 1.2rem;
+}
+
+.ticket-info {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ticket-info-item {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ticket-info-item span:first-child {
+    color: #87CEEB;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: #87CEEB;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.showcase {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #ddd;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.showcase li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 10px;
+}
+
+.showcase li small {
+    margin-left: 8px;
+    font-size: 0.9rem;
+}
+
+.cinema-container {
+    perspective: 1000px;
+    margin-bottom: 30px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.screen {
+    background: linear-gradient(to bottom, #fff, #ccc);
+    height: 70px;
+    width: 80%;
+    margin: 15px auto 30px;
+    transform: perspective(400px) rotateX(-25deg);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0F2027;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.seating-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.row-label {
+    width: 30px;
+    height: 30px;
+    margin: 5px 10px 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #87CEEB;
+    font-size: 1rem;
+}
+
+.seat {
+    background-color: #444451;
+    height: 30px;
+    width: 35px;
+    margin: 5px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.seat-number {
+    position: absolute;
+    bottom: 2px;
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+.seat.selected {
+    background-color: green;
+}
+
+.seat.user-seat {
+    background-color: #00bcd4;
+    color: white;
+}
+
+.seat.sold {
+    background-color: #fff;
+    cursor: not-allowed;
+}
+
+.seat:not(.sold):hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(135, 206, 235, 0.7);
+}
+
+.selection-summary {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-item span:first-child {
+    color: #87CEEB;
+    margin-bottom: 5px;
+}
+
+.summary-total {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #87CEEB;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 15px;
+    border-top: 2px solid rgba(135, 206, 235, 0.3);
+    margin-top: 10px;
+}
+
+.btn-update {
+    background: linear-gradient(135deg, #87CEEB, #4A90E2);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    display: block;
+    margin: 30px auto 0;
+    width: 250px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-update:hover {
+    background: linear-gradient(135deg, #6BB6DE, #3a7fc9);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .reservation-container {
+        padding: 20px 15px;
+    }
+    
+    .reservation-movie-details, 
+    .ticket-info, 
+    .selection-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .ticket-info {
+        flex-direction: column;
+    }
+    
+    .tab h2 {
+        font-size: 1.8rem;
+    }
+    
+    .showcase {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-update {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .screen {
+        width: 90%;
+        font-size: 1rem;
+    }
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #f5c6cb;
+    }
+    
+    .alert-danger ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+}

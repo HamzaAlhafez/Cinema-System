@@ -20,13 +20,16 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
     <!-- ===== CSS links ===== -->
-    <link rel="stylesheet" type="text/css" href={{ asset('css/bootstrap.min.css') }}>
+     <link rel="stylesheet" type="text/css" href={{ asset('css/bootstrap.min.css') }}>
     <link rel="stylesheet" type="text/css" href={{ asset('revolution/css/settings.css') }}>
     <link rel="stylesheet" type="text/css" href={{ asset('revolution/css/layers.css') }}>
-    <link rel="stylesheet" type="text/css" href={{ asset('revolution/css/navigation.css') }}>
-    <link rel="stylesheet" type="text/css" href={{ asset('css/magnific-popup.css') }}>
+     <link rel="stylesheet" type="text/css" href={{ asset('revolution/css/navigation.css') }}>
+     <link rel="stylesheet" type="text/css" href={{ asset('css/magnific-popup.css') }}>
     <link rel="stylesheet" type="text/css" href={{ asset('css/jquery.mmenu.css') }}>
     <link rel="stylesheet" type="text/css" href={{ asset('css/owl.carousel.min.css') }}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
 
     <link rel="stylesheet" type="text/css" href={{ asset('css/style.css') }}>
     <link rel="stylesheet" type="text/css" href={{ asset('css/responsive.css') }}>

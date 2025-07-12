@@ -14,9 +14,7 @@
                         <img src={{ asset('images/branding/logos/logo-bt.png') }} alt="logo" class="logo">
                         <!-- INSERT YOUR WHITE LOGO HERE -->
                         <img src={{ asset('images/branding/logos/logo-w.png') }} alt="white logo" class="logo-white">
-                        <p class="nomargin">{{ config('app.name') }} is a ticket reservation system designed for
-                            cinemas. It features a great number of features, from normal ticket reservation to
-                            multi-user roles. It was developed using laravel 8. We hope you like it.</p>
+                        <p class="nomargin">{{ config('app.name') }} is a modern cinema ticketing system that makes movie booking quick and easy. Customers can browse showtimes, select seats, and get tickets instantly. Theater staff can efficiently manage screenings, halls, and bookings - all through one simple platform.</p>
                     </div>
                 </div>
                 <!-- End of Widget 1 -->

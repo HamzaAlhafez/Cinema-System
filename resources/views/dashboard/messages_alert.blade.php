@@ -123,3 +123,49 @@
 
         </script>
     @endif
+    @if (session()->has('showExpirydateYet'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "You cannot delete a show that is scheduled for today or a future date",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
+    @if (session()->has('promocodehasAssociated'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "Cannot delete promocode because it has associated records (purchases or usages)",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
+    @if (session()->has('conflictingShow'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "There is already a show in this hall at the same time or overlapping time",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
+    @if (session()->has('Categoriehasmoive'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "the Categorie cannot be deleted bacause it is linked to a Moive",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
+
+    
