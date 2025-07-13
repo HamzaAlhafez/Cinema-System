@@ -7,7 +7,7 @@ bootstrap/cache/*
 .phpunit.cache
 
 # Environment
-.env
+
 .env.backup
 .env.production
 
