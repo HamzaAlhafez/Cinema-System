@@ -2,6 +2,7 @@
 @extends('layouts.layout')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -65,12 +66,12 @@
                                 <h4 class="mb-3">Need Immediate Assistance?</h4>
                                 <div class="d-flex">
                                     <div class="me-4">
-                                        <i class="fas fa-phone me-2 text-primary"></i> +1 (555) 123-4567
+                                        <i class="fas fa-phone me-2 text-primary"></i>(+963) 953248544
 
 
 </div>
                                     <div>
-                                        <i class="fas fa-envelope me-2 text-primary"></i> support@cinemasystem.com
+                                        <i class="fas fa-envelope me-2 text-primary"></i>support@cinema.com
                                     </div>
                                 </div>
                             </div>
@@ -96,92 +97,7 @@
     </div>
 </div>
 
-<style>
-    .chat-icon-circle {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .chat-icon-container {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .chat-icon-bg {
-        width: 120px;
-        height: 120px;
-        background: linear-gradient(135deg, #e6f7ff, #b3e0ff);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: pulse 2s infinite;
-    }
-    
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #408591, #2a6773);
-    }
-    
-    .text-gradient-primary {
-        background: linear-gradient(135deg, #408591, #2a6773);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    .features {
-        background: linear-gradient(to right, #ffffff, #f8f9fa);
-        border: 1px solid #e9ecef;
-    }
-    
-    .feature-card {
-        border-radius: 10px;
-        transition: all 0.3s ease;
-        border-top: 4px solid #408591;
-    }
-    
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        border-top: 4px solid #ff6b6b;
-    }
-    
-    .feature-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto;
-        background: #e6f7ff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .support-info {
-        border-left: 4px solid #408591;
-    }
-    
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(64, 133, 145, 0.4); }
-        70% { box-shadow: 0 0 0 15px rgba(64, 133, 145, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(64, 133, 145, 0); }
-    }
-    
-    .btn-primary {
-        background: linear-gradient(135deg, #408591, #2a6773);
-        border: none;
-        transition: all 0.3s;
-    }
-    
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-</style>
+
 
 <script>
     var botmanWidget = {

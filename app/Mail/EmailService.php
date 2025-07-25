@@ -12,17 +12,26 @@ use Illuminate\Queue\SerializesModels;
 class EmailService extends Mailable
 {
     use Queueable, SerializesModels;
+    public $data;
+    public $type; // 'show' أو 'booking'
 
-    public $Show;
-    public function __construct($Show)
+    public function __construct($data, $type = 'show')
     {
-        $this->Show = $Show;
+        $this->data = $data;
+        $this->type = $type;
     }
+
     public function build()
     {
-        return $this->subject('New Show -' . config('app.name'))
-                    ->view('emails.EmailTemplate');
+        $subject = $this->type === 'show' 
+            ? 'New Show - ' . config('app.name') 
+            : 'Booking Confirmation - ' . config('app.name');
+
+        return $this->subject($subject)
+                   ->view('emails.EmailTemplate');
     }
+
+   
 
     
 }

@@ -7,6 +7,7 @@ use App\Models\Movie;
 use App\Models\Hall;
 use App\Models\Show;
 use App\Models\Ticket;
+use App\Models\User;
 use carbon\carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -131,8 +132,14 @@ if ($shows->count() > 0) {
         $Show->end_time = strip_tags($request->input('End_time'));
         $Show->remaining_seats = $hall->Capacity;
         $Show->save();
-        // $Show->load(['movie', 'hall']);
-        // Mail::to('h71313277@gmail.com')->send(new EmailService($Show));
+        $Show->load(['movie', 'hall']);
+        $users = User::all();
+
+foreach ($users as $user) {
+    Mail::to($user->email)->send(new EmailService($Show, 'show'));
+}
+        // Mail::to('hamzaalafez@gmail.com')->send(new EmailService($Show, 'show'));
+       
 
 
         session()->flash('add');

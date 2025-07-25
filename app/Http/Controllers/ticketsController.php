@@ -14,6 +14,8 @@ use App\Models\Purchasepromocode;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Mail\EmailService;
+use Illuminate\Support\Facades\Mail;
 
 class ticketsController extends Controller
 {
@@ -69,6 +71,7 @@ class ticketsController extends Controller
 {
     
     $this->VaildRequest($request);
+   
     
     
 
@@ -96,8 +99,23 @@ class ticketsController extends Controller
         $this->createSeatReservations($request, $ticket);
         $this->updateShowRemainingSeats($request);
         $this->handleLoyaltyPoints();
+        $ticket->load(['show.movie', 'show.hall', 'seatReservations']); 
+
+        $emailData = (object) [
+           'ticket' => $ticket,
+           'seats' => $ticket->seatReservations,
+           'type' => 'booking'
+       ];
+    //    Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
+          Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
+       
+           
+          
+           
+        
 
         DB::commit();
+        
        
 if ($couponCode) {
     if ($discount > 0) {
