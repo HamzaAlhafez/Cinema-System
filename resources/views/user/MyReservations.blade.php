@@ -80,12 +80,23 @@
 
 
 <div class="ticket-actions">
+<form action="{{ route('ticket-foods.create') }}" method="GET" class="d-inline">
+    <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+    <button type="submit" class="btn btn-add-item">
+        <i class="fas fa-plus-circle"></i>Food & Drinks
+    </button>
+</form>
+
+
+
+              
                             <form action="{{ route('tickets.edit', $ticket->id) }}" method="GET" class="d-inline">
                                 <button type="submit" class="btn btn-second btn-effect">
                                     Edit
                                 </button>
                             </form>
-                            
+
+                              
                             <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST" class="d-inline delete-form">
                                 @csrf
                                 @method('DELETE')

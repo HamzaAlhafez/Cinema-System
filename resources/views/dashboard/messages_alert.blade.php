@@ -167,5 +167,16 @@
 
         </script>
     @endif
+    @if (session()->has('CategoriehasItem'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "the Categorie cannot be deleted bacause it is linked to a Items",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
 
     

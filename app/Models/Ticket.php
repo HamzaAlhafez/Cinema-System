@@ -35,6 +35,10 @@ class Ticket extends Model
     {
         return $this->hasMany(SeatReservation::class);
     }
+    public function foods()
+{
+    return $this->hasMany(TicketFood::class);
+}
     
   
 }

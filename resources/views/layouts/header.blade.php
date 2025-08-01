@@ -32,17 +32,23 @@
 
                     <!-- Menu Item -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('showsmoive.index')}}">Movies</a>
-                    </li>
-
-                    <!-- Menu Item -->
-                    <li class="nav-item">
                         <a class="nav-link" href="{{route('showsmoive.index')}}">What to Watch?</a>
                     </li>
 
                     <!-- Menu Item -->
+                    
+                  
+                     
                     <li class="nav-item">
-    <a class="nav-link" href="{{ route('chat') }}">Contact us</a>
+                         <a class="nav-link" href="{{ route('ticket-foods.index') }}">Food & Drinks</a>
+                     </li>
+       
+
+                   
+
+                    <!-- Menu Item -->
+                    <li class="nav-item">
+    <a class="nav-link" href="{{ route('chat') }}">BotMan</a>
 </li>
 
                 </ul>

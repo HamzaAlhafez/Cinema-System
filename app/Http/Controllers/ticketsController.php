@@ -106,8 +106,8 @@ class ticketsController extends Controller
            'seats' => $ticket->seatReservations,
            'type' => 'booking'
        ];
-    //    Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
-          Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
+       Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
+        //   Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
        
            
           
@@ -120,25 +120,21 @@ class ticketsController extends Controller
 if ($couponCode) {
     if ($discount > 0) {
         $finalPrice = $request->final_price * (1 - ($discount / 100));
-        return redirect()->back()->with([
+       
+        return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
             'flash' => 'success',
             'message' => "🎉 Booking successful! $discount% discount applied. Final price: $finalPrice$. You have been awarded 100 points! 💯✨"
         ]);
-    } else {
-        return redirect()->back()->with([
-            'flash' => 'success',
-            'message' => "✅ Booking successful! (Promocode invalid) 🚫. You have been awarded 100 points!💯✨ "
-        ]);
-    }
+    } 
+      
 }
 
        
 
-        return redirect()->back()->with([
-            'flash' => 'success',
-            'message' => '✅Ticket booked successfully.You have been awarded 100 points! 💯✨ '
-        ]);
-
+return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
+    'flash' => 'success',
+    'message' => '✅Ticket booked successfully.You have been awarded 100 points! 💯✨'
+]);
     } catch (\Exception $e) {
         DB::rollBack();
         return redirect()->back()->with([

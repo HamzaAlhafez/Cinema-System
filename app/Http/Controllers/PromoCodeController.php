@@ -100,7 +100,7 @@ private function VaildRequest(Request $request,$id=null)
     {
            $request->validate([
             'code' => ['required',Rule::unique('promocodes')->ignore($id),'max:20'],
-            'type' => ['required',Rule::in(['points', 'discount'])],
+            'type' => ['required',Rule::in(['discount'])],
             'description' => ['required','min:1'],
             'value' => ['required','integer','min:1'],
             'expiry_date' => ['required','date','after:today'],
@@ -123,8 +123,7 @@ private function VaildRequest(Request $request,$id=null)
     public function store(Request $request)
     {
         $this->VaildRequest($request);
-       // points_required
-       //max_usage_per_user
+      
         try {
             $Promocode = new Promocode();
             $Promocode->code=strip_tags($request->input('code'));

@@ -8,6 +8,7 @@ use App\Http\Controllers\ticketsController;
 use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\TicketFoodController;
 
 
 
@@ -46,6 +47,7 @@ Auth::routes(['verfiy'=> true]);// class auth
 Route::resource('showsmoive', UserShowController::class);
 Route::post('showsmoive/search', [UserShowController::class, 'Search'])->name('showsmoive.Search');
 Route::get('/shows/filter-by-category', [UserShowController::class, 'filterByCategory'])->name('shows.filterByCategory');
+Route::get('ticket-foods', [TicketFoodController::class, 'index'])->name('ticket-foods.index');
 
 
 
@@ -77,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('promocodes/redeem', [PromoCodeController::class, 'redeem'])
         ->name('promocodes.redeem');
+        Route::resource('ticket-foods', TicketFoodController::class)->except(['index']);
 });
 
 

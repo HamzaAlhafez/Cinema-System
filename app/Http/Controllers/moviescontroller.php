@@ -7,9 +7,10 @@ use App\Models\Movie;
 use App\Models\Categorie;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
-
-
 use Illuminate\Support\Facades\File;
+
+
+
 
 // index and search and saveimage and update and store and destroy
 

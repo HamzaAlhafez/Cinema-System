@@ -12,6 +12,9 @@ use App\Http\Controllers\MangerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\FoodCategoryController;
+use App\Http\Controllers\TicketFoodController;
 
 
 
@@ -63,6 +66,8 @@ Route::get('admin/dashboard/Contactus', [AdminController::class, 'ContactusShowf
 Route::get('admin/dashboard/ViewProfile', [AdminController::class, 'Viewproifle'])->name('admin.dashboard.ViewProfile');
 Route::resource('promocodes', PromoCodeController::class);
 Route::resource('categories',CategorieController::class);
+Route::resource('food-categories', FoodCategoryController::class);
+Route::resource('foods', FoodController::class);
 
 });
 
