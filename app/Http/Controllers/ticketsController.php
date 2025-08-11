@@ -34,7 +34,7 @@ class ticketsController extends Controller
             })
             ->with('show.movie', 'show.hall')
             ->get();
-            return view('user.MyReservations', compact('tickets'));
+            return view('Reservations.MyReservations', compact('tickets'));
 
         }catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again.']);
@@ -362,7 +362,7 @@ private function applyCoupon(Promocode $coupon, int $userId): int
             'hallName' => $ticket->show->hall->hall_name,
         ];
 
-        return view('user.TicketUpdate', $viewData);
+        return view('Reservations.TicketUpdate', $viewData);
 
     } 
         

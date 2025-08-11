@@ -28,7 +28,7 @@ class PromoCodeController extends Controller
         ->orderBy('expiry_date')
         ->get();
 
-    return view('user.ExploreCoupons', compact('AvailablePromoCodes'));
+    return view('PromoCodes.ExploreCoupons', compact('AvailablePromoCodes'));
         
 
     }
@@ -84,7 +84,7 @@ class PromoCodeController extends Controller
             ->with('promocode')
             ->get();
         
-        return view('user.MycouponPurchased', compact('purchasedPromocodes'));
+        return view('PromoCodes.MycouponPurchased', compact('purchasedPromocodes'));
         
     }
     

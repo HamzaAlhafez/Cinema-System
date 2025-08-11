@@ -1,3 +1,4 @@
+
 @extends('layouts.layout')
 
 @section('content')
@@ -33,28 +34,37 @@
                 
                 <!-- Food Items Grid -->
                 <div class="food-items-grid">
-                    @foreach($foods as $food)
-                    <div class="food-item-card" data-category="{{ $food->food_category_id }}">
-                        <div class="food-item-image" style="background-image: url('{{ asset('imagesfoods/food/' . $food->image) }}');">
-                            <div class="food-stock-info">Available: {{ $food->stock }}</div>
-                            <div class="food-item-price">${{ number_format($food->price, 2) }}</div>
+                    @if($foods->count() > 0)
+                        @foreach($foods as $food)
+                        <div class="food-item-card" data-category="{{ $food->food_category_id }}">
+                            <div class="food-item-image" style="background-image: url('{{ asset('imagesfoods/food/' . $food->image) }}');">
+                                <div class="food-stock-info">Available: {{ $food->stock }}</div>
+                                <div class="food-item-price">${{ number_format($food->price, 2) }}</div>
+                            </div>
+                            <div class="food-item-info">
+                                <h3 class="food-item-name">{{ $food->name }}</h3>
+                                @if($food->description !== null)
+                                <p class="food-item-description">{{ $food->description }}</p>
+                                @else
+                                <span class="food-no-description">No description available</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="food-item-info">
-                            <h3 class="food-item-name">{{ $food->name }}</h3>
-                            @if($food->description !== null)
-                            <p class="food-item-description">{{ $food->description }}</p>
-                            @else
-                            <span class="food-no-description">No description available</span>
-                            @endif
+                        @endforeach
+                    @else
+                        <div class="no-food-message">
+                            <i class="fas fa-utensils-slash"></i>
+                            <h3>No food items available at the moment</h3>
+                            <p>We're sorry, but there are currently no food items in our menu. Please check back later.</p>
                         </div>
-                    </div>
-                    @endforeach
+                    @endif
                 </div>
             </main>
         </div>
     </div>
     
     <!-- Call to Action -->
+    @if($foods->count() > 0)
     <div class="food-cta">
         <div class="food-cta-content">
             <div class="food-cta-text">
@@ -66,6 +76,7 @@
             </a>
         </div>
     </div>
+    @endif
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -73,7 +84,9 @@
             const categoryBtns = document.querySelectorAll('.food-category-btn');
             categoryBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const categoryId = this.dataset.category;
+
+
+              const categoryId = this.dataset.category;
                     
                     categoryBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');

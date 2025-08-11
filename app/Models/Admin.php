@@ -67,4 +67,8 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Promocode::class);
     }
+    public function trailers()
+    {
+        return $this->hasMany(Trailer::class);
+    }
 }

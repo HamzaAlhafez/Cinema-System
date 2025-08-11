@@ -9,6 +9,10 @@ use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\TicketFoodController;
+use App\Http\Controllers\HomeController;
+
+
+
 
 
 
@@ -28,16 +32,16 @@ use App\Http\Controllers\TicketFoodController;
 
 Route::post('/botman', [ChatbotController::class, 'handle']);
 
-// إطار الدردشة (iframe)
+
 Route::get('/botman/chat', [ChatbotController::class, 'iframe']);
-///
+
 Route::get('/chat-page', function () {
     return view('botman.chat'); 
 })->name('chat'); 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
@@ -81,6 +85,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('promocodes.redeem');
         Route::resource('ticket-foods', TicketFoodController::class)->except(['index']);
 });
+
+
 
 
 

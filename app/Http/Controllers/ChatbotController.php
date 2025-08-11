@@ -59,7 +59,7 @@ class CinemaConversation extends Conversation
             return;
         }
         
-        $this->showWelcomeMessage();
+        $this->say("Sorry, I didn't understand that. Please type 'start' to see the main menu.");
     }
 
     private function handleTextCommand($message)
@@ -113,7 +113,7 @@ class CinemaConversation extends Conversation
                 $this->showWelcomeMessage();
                 break;
             default:
-                $this->showWelcomeMessage();
+            $this->say("Sorry, I didn't understand that. Please type 'start' to see the main menu.");
         }
     }
 
@@ -365,7 +365,7 @@ class CinemaConversation extends Conversation
                         
                         foreach ($showsOnDate as $show) {
                             $time = Carbon::parse($show->start_time)->format('g:i A');
-                            $message .= "• {$time} at {$show->hall->hall_name} (💰 {$show->price} SAR, 🪑 {$show->remaining_seats} seats left)\n";
+                            $message .= "• {$time} at {$show->hall->hall_name} (💰 {$show->price} $, 🪑 {$show->remaining_seats} seats left)\n";
                         }
                         $message .= "\n";
                     }
@@ -420,26 +420,23 @@ class CinemaConversation extends Conversation
 
         return $this->showWelcomeMessage();
     }
-
     private function showPromoOptions()
-    {
-        $question = Question::create('🎟 Promo Code Options')
-            ->fallback('Unable to display promo options')
-            ->callbackId('promo_options')
-            ->addButtons([
-                Button::create('View Available Promos')->value('view_promos'),
-                Button::create('View Purchased promos')->value('view_purchased_promos'),
-                Button::create('↩️ Back')->value('back'),
-            ]);
+{
+    $question = Question::create('🎟 Promo Code Options')
+        ->fallback('Unable to display promo options')
+        ->callbackId('promo_options')
+        ->addButtons([
+            Button::create('View Available Promos')->value('view_promos'),
+            Button::create('View Purchased promos')->value('view_purchased_promos'),
+            Button::create('↩️ Back')->value('back'),
+        ]);
 
-
-           $this->ask($question, function(Answer $answer) {
-           
-            if ($this->handleTextCommand($answer->getText())) {
-                return;
-            }
+    $this->ask($question, function (Answer $answer) {
+      
+        if ($answer->isInteractiveMessageReply()) {
+            $selectedValue = $answer->getValue(); 
             
-            switch ($answer->getValue()) {
+            switch ($selectedValue) {
                 case 'view_promos':
                     $this->showAvailablePromos();
                     break;
@@ -452,11 +449,22 @@ class CinemaConversation extends Conversation
                 default:
                     $this->repeat('Please select a valid option:');
             }
-        });
-    }
+        } 
+       
+        else {
+            if ($this->handleTextCommand($answer->getText())) {
+                return;
+            }
+            $this->repeat('Please use the buttons or enter a valid command.');
+        }
+    });
+}
+
+    
 
     private function showAvailablePromos()
     {
+       
         $user = auth()->user();
         if (!$user) {
             $this->say("🔐 Please login to view your purchased promos.");
@@ -490,6 +498,7 @@ class CinemaConversation extends Conversation
 
         $this->say($message, ['parse' => 'HTML']);
         $this->showPromoOptions();
+       
     }
 
     private function showpurchasedPromos()

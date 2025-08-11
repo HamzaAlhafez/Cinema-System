@@ -15,6 +15,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\TicketFoodController;
+use App\Http\Controllers\TrailerController;
 
 
 
@@ -68,6 +69,7 @@ Route::resource('promocodes', PromoCodeController::class);
 Route::resource('categories',CategorieController::class);
 Route::resource('food-categories', FoodCategoryController::class);
 Route::resource('foods', FoodController::class);
+Route::resource('Trailers', TrailerController::class);
 
 });
 

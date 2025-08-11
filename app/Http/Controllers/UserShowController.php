@@ -26,62 +26,76 @@ class UserShowController extends Controller
         })
         ->get();
 
-    return view('user.showmoive', compact('shows'));
+    return view('Shows.showmoive', compact('shows'));
        
     }
+    public function Search(Request $request)
+{
+    $request->validate([
+        'textSearch' => ['required'],
+    ]);
 
+    $textSearch = $request->textSearch;
 
+    try {
+        $movies = Movie::where('title', 'like', '%'.$textSearch.'%')->pluck('id');
 
-     public function Search(Request $request)
-    {
-        $request->validate([
-    'textSearch' => ['required'],
-]);
+        $shows = Show::whereIn('movie_id', $movies)
+            ->with('movie', 'hall')
+            ->where(function ($query) {
+                $query->whereDate('date', '>', now()->toDateString())
+                    ->orWhere(function ($query) {
+                        $query->whereDate('date', '=', now()->toDateString())
+                            ->whereTime('end_time', '>', now()->toTimeString());
+                    });
+            })
+            ->get();
 
-$textSearch = $request->textSearch;
-
-try {
-
-    $movies = Movie::where('title', $textSearch )->pluck('id')->first();
-
-
-    $shows = Show::where('movie_id',$movies)->with('movie', 'hall')->get();
-} catch (\Exception $e) {
-    return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-}
-
-if ($shows->count() > 0) {
-    return view('user.showmoive', compact('shows'));
-} else {
-     
-    return redirect()->route('showsmoive.index')->with(['flash' => 'error', 'message' => 'Search Faild Please try again']);
-}
-
-
-
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+
+    if ($shows->count() > 0) {
+        return view('Shows.showmoive', compact('shows'));
+    } else {
+        return redirect()->route('showsmoive.index')
+            ->with(['flash' => 'error', 'message' => 'No upcoming shows found for this movie']);
+    }
+}
+
+
+
+    
     public function filterByCategory(Request $request)
-    {
-        $request->validate([
-            'category_id' => 'required|integer',
-        ], [
-            'category_id.required' => 'You must select a category.',
-            
-        ]);
-    
-        $categoryId = $request->input('category_id');
-    
-        try {
-            
-            $shows = Show::whereHas('movie', function ($query) use ($categoryId) {
+{
+    $request->validate([
+        'category_id' => 'required|integer',
+    ], [
+        'category_id.required' => 'You must select a category.',
+    ]);
+
+    $categoryId = $request->input('category_id');
+
+    try {
+        $shows = Show::with(['movie', 'hall'])
+            ->whereHas('movie', function ($query) use ($categoryId) {
                 $query->where('categorie_id', $categoryId);
-            })->with('movie', 'hall')->get();
-    
-            return view('user.showmoive', compact('shows'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+            })
+            ->where(function ($query) {
+                $query->whereDate('date', '>', now()->toDateString())
+                    ->orWhere(function ($query) {
+                        $query->whereDate('date', '=', now()->toDateString())
+                            ->whereTime('end_time', '>', now()->toTimeString());
+                    });
+            })
+            ->get();
+
+        return view('Shows.showmoive', compact('shows'));
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+}
+   
 
 
     public function create()
@@ -99,10 +113,10 @@ if ($shows->count() > 0) {
     public function show($id)
 {
 
-     $shows = Show::with(['movie', 'hall'])->findOrFail($id);
+     $shows = Show::with(['movie', 'hall','movie.trailer'])->findOrFail($id);
 
 
-    return view('user.showDetails', compact('shows'));
+    return view('Shows.showDetails', compact('shows'));
 }
 
 

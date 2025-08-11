@@ -5,6 +5,7 @@
     <section class="movie-detail-intro overlay-gradient ptb100"
     style="background: url({{ asset('images/branding/posters/movie-detail-bg.webp') }});">
     </section>
+    
     <!-- =============== END OF MOVIE DETAIL INTRO =============== -->
 
 
@@ -75,11 +76,55 @@
                     <div class="inner pr50">
 
                         <!-- Storyline -->
-                        <div class="storyline">
-                            <h3 class="title">Storyline</h3>
-
-                            <p>{{ $shows->movie->storyline}}</p>
-                        </div>
+                     <div class="storyline-section">
+  <!-- Header with icon -->
+  <div class="storyline-header">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>
+    <h3 class="storyline-title">Storyline</h3>
+  </div>
+  
+  <!-- Story content -->
+  <div class="story-content">
+    <p class="story-text" id="storyText">
+      {{ $shows->movie->storyline }}
+    </p>
+    <div class="story-fade" id="storyFade"></div>
+  </div>
+  
+  <!-- Read more button -->
+  <button class="read-more-btn" id="readMoreBtn">
+    Read more
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+    </svg>
+  </button>
+  
+  <!-- Decorative elements -->
+  <div class="story-decor">
+    <div class="story-circle story-circle-1"></div>
+    <div class="story-circle story-circle-2"></div>
+  </div>
+</div>
+                       <!-- YouTube Video - Real Trailer -->
+<div class="movie-trailer mt-4">
+    <h3 class="title">Movie Trailer</h3>
+    
+    @if($shows->movie->trailer && $shows->movie->trailer->trailer_url)
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe 
+                class="embed-responsive-item" 
+                src="{{ $shows->movie->trailer->EmbedUrl()  }}" 
+                allowfullscreen
+            ></iframe>
+        </div>
+    @else
+        <div class="alert alert-info">
+            No trailer available for this movie.
+        </div>
+    @endif
+</div>
 
                         <!-- Shows -->
                         <div class="movie-media mt50">
@@ -123,49 +168,37 @@
                                         </tr>
 
                                 </table>
-                                @include('components.reservation-modal')
+                                @include('Reservations.reservation-modal')
 
                         </div>
 
                     </div>
                 </div>
                 <!-- End of Movie Main -->
+                 <!-- Start of Sidebar -->
+<div class="col-lg-4 col-sm-12">
+    <div class="sidebar">
+        <!-- Start of Details Widget -->
+        <aside class="widget widget-movie-details details-card">
+            <h3 class="title">Details</h3>
+            <ul class="details-list">
+                <li><strong>production date: </strong>{{ $shows->movie->production_date->toFormattedDateString() }}</li>
+                <li><strong>Director: </strong>{{ $shows->movie->director }}</li>
+                <li><strong>Actors: </strong>{{ $shows->movie->Actors }}</li>
+                <li><strong>Language: </strong>{{ $shows->movie->language }}</li>
+                <li><strong>rating: </strong>{{ $shows->movie->rating }}</li>
+                <li><strong>Start Time: </strong>{{\carbon\carbon::parse($shows->start_time)->format('H:i')}}</li>
+                <li><strong>End Time: </strong>{{\carbon\carbon::parse($shows->end_time)->format('H:i')}}</li>
+            </ul>
+        </aside>
+        <!-- End of Details Widget -->
+    </div>
+</div>
+<!-- End of Sidebar -->
+ 
 
 
-                <!-- Start of Sidebar -->
-                <div class="col-lg-4 col-sm-12">
-                    <div class="sidebar">
-
-                        <!-- Start of Details Widget -->
-                          <aside class="widget widget-movie-details">
-                            <h3 class="title">Details</h3>
-
-                            <ul>
-                                <li><strong>production date:
-                                    </strong>{{ $shows->movie->production_date->toFormattedDateString() }}
-                                </li>
-                                <li><strong>Director:
-                                    </strong>{{ $shows->movie->director }}</li>
-                                     <li><strong>Actors:
-                                    </strong>{{ $shows->movie->Actors }}</li>
-                                <li><strong>Language:
-                                    </strong>{{ $shows->movie->language }}</li>
-                                <li><strong>rating:
-                                    </strong>{{ $shows->movie->rating }}</li>
-                                <li><strong>Start Time:
-                                    </strong>{{\carbon\carbon::parse($shows->start_time)->format('H:i')}}
-                                </li>
-                                 <li><strong>End Time:
-                                    </strong>{{\carbon\carbon::parse($shows->end_time)->format('H:i')}}
-                                </li>
-                            </ul>
-                        </aside>
-
-                        <!-- End of Details Widget -->
-
-                    </div>
-                </div>
-                <!-- End of Sidebar -->
+               
             </div>
 
         </div>
@@ -175,27 +208,27 @@
 
 
     <!-- =============== START OF RECOMMENDED MOVIES SECTION =============== -->
-    <section class="recommended-movies bg-light ptb100">
-        <div class="container">
-
-            {{-- <!-- Start of row -->
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <h2 class="title">People who liked this also liked...</h2>
-                </div>
-            </div>
-            <!-- End of row --> --}}
-
-
-            {{-- <!-- Start of Latest Movies Slider -->
-            <div class="owl-carousel recommended-slider mt20">
-
-            </div> --}}
-            <!-- End of Latest Movies Slider -->
-
-        </div>
-    </section>
+    
     @include('components.flash-message')
     <!-- =============== END OF RECOMMENDED MOVIES SECTION =============== -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const storyText = document.getElementById('storyText');
+  const readMoreBtn = document.getElementById('readMoreBtn');
+  const storyFade = document.getElementById('storyFade');
+  const storySection = document.querySelector('.storyline-section');
+  
+  readMoreBtn.addEventListener('click', function() {
+    storySection.classList.toggle('story-expanded');
+    
+    if (storySection.classList.contains('story-expanded')) {
+      readMoreBtn.innerHTML = 'Show less <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>';
+    } else {
+      readMoreBtn.innerHTML = 'Read more <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>';
+    }
+  });
+});
+</script>
 
 @endsection

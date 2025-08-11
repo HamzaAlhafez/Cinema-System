@@ -394,3 +394,45 @@ font-size: 1.9rem;
         justify-content: flex-start;
     }
 }
+
+.no-food-message {
+    width: 100%;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f9f4fc; /* لون خلفية فاتح يتناسب مع اللون الأرجواني */
+    border-radius: 12px;
+    margin: 30px 0;
+    border: 1px solid #e0c4f0;
+    box-shadow: 0 4px 12px rgba(147, 82, 179, 0.1);
+}
+
+.no-food-message i {
+    font-size: 64px;
+    color: #9352b3; /* اللون الأرجواني المطلوب */
+    margin-bottom: 25px;
+}
+
+.no-food-message h3 {
+    color: #9352b3; /* اللون الأرجواني المطلوب */
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.no-food-message p {
+    color: #7a4b8d; /* لون أرجواني داكن قليلاً للنص */
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.no-food-message {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
