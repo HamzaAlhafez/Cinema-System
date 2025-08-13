@@ -97,13 +97,46 @@
         <span class="side-menu__label">Trailers Management</span>
     </a>
 </li>
+
+<li class="slide">
+    <a class="side-menu__item" data-toggle="slide" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z"/>
+        </svg>
+        <span class="side-menu__label">Statistics</span>
+        <i class="angle fe fe-chevron-down"></i>
+    </a>
+    <ul class="slide-menu">
+        <li>
+            <a class="slide-item" href="{{ route('statistics.tickets') }}">
+                Tickets Sold
+            </a>
+            <a class="slide-item" href="{{ route('statistics.yearlyRevenue') }}">
+            yearlyRevenue
+            </a>
+            <a class="slide-item" href="{{ route('statistics.topUsersPoints') }}">
+        Top Users by Points
+    </a>
+    <a class="slide-item" href="{{ route('statistics.topSellingMovies') }}">
+    top Selling Movies
+    </a>
+    <a class="slide-item" href="{{ route('statistics.topCategoriesMoives') }}">
+    top Categories Moives
+    </a>
+    
+        </li>
+       
+    </ul>
+    
+    
+</li>
 					<li class="slide">
-    <a class="side-menu__item" href="{{ route('mangers.index') }}">
+    <a class="side-menu__item" href="{{ route('employees.index') }}">
         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z"/>
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
         </svg>
-        <span class="side-menu__label">Managers Management</span>
+        <span class="side-menu__label">Employee Management</span>
     </a>
 </li>
 

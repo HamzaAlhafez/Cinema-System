@@ -10,6 +10,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\TicketFoodController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StatisticsController;
 
 
 
@@ -33,7 +34,7 @@ use App\Http\Controllers\HomeController;
 Route::post('/botman', [ChatbotController::class, 'handle']);
 
 
-Route::get('/botman/chat', [ChatbotController::class, 'iframe']);
+Route::get('/botman/chat', [ChatbotController::class, 'iframe'])->name('botman.iframe');;
 
 Route::get('/chat-page', function () {
     return view('botman.chat'); 
@@ -84,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('promocodes/redeem', [PromoCodeController::class, 'redeem'])
         ->name('promocodes.redeem');
         Route::resource('ticket-foods', TicketFoodController::class)->except(['index']);
+      
 });
 
 

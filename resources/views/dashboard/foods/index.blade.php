@@ -91,7 +91,7 @@
                                                  </td>
                                                    <td>{{$food->price}}</td>
                                                    <td>{{$food->stock}}</td>
-                                                   <td>{{$food->stock}}</td>
+                                                   
                                                    <td>{{$food->FoodCategory->name}}</td>
                                                    <td>
                                                      <img src="{{Url::asset('imagesfoods/food/'. $food->image)}}"

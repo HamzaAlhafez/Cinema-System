@@ -8,7 +8,7 @@ use App\Http\Controllers\admin\auth\AdminRegisterController;
 use App\Http\Controllers\moviescontroller;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\ShowController;
-use App\Http\Controllers\MangerController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PromoCodeController;
 use App\Http\Controllers\CategorieController;
@@ -16,6 +16,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\TicketFoodController;
 use App\Http\Controllers\TrailerController;
+use App\Http\Controllers\StatisticsController;
 
 
 
@@ -56,8 +57,8 @@ Route::resource('shows', ShowController::class)->except(['show']);
 Route::get('shows/getAvailableHalls', [ShowController::class, 'getAvailableHalls'])->name('shows.getAvailableHalls');
 
 Route::post('shows/search', [ShowController::class, 'Search'])->name('shows.Search');
-Route::resource('mangers', MangerController::class);
-Route::post('mangers/search', [MangerController::class, 'Search'])->name('mangers.Search');
+Route::resource('employees', EmployeeController::class);
+Route::post('employees/search', [EmployeeController::class, 'Search'])->name('employees.search');
 Route::resource('Admins', AdminController::class);
 Route::get('admin/dashboard/ChangePassword', [AdminController::class, 'ShowChangePasswordForm'])->name('admin.dashboard.ChangePassword');
 Route::post('Admins/password', [AdminController::class, 'ChangePassword'])->name('Admins.password');
@@ -70,6 +71,15 @@ Route::resource('categories',CategorieController::class);
 Route::resource('food-categories', FoodCategoryController::class);
 Route::resource('foods', FoodController::class);
 Route::resource('Trailers', TrailerController::class);
+Route::get('/statistics/tickets', [StatisticsController::class, 'ticketsSold'])
+->name('statistics.tickets');
+Route::get('/statistics/yearly-revenue', [StatisticsController::class, 'yearlyRevenue'])
+    ->name('statistics.yearlyRevenue');
+    
+    Route::get('/statistics/top-users-points', [StatisticsController::class, 'topUsersByPoints'])
+    ->name('statistics.topUsersPoints');
+    Route::get('/statistics/top-selling-movies', [StatisticsController::class, 'topSellingMovies'])->name('statistics.topSellingMovies');
+    Route::get('/statistics/top-categories', [StatisticsController::class, 'topCategoriesByBookings'])->name('statistics.topCategoriesMoives');
 
 });
 
