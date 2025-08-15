@@ -11,6 +11,7 @@ class Ticket extends Model
      protected $fillable = [
         'show_id',
         'user_id',
+        'employee_id',
         'Seats_Booked',
         'tickets_Price',
         'Booking_Status',
@@ -30,6 +31,10 @@ class Ticket extends Model
      public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function Employee()
+    {
+        return $this->belongsTo(Employee::class);
     }
     public function seatReservations()
     {

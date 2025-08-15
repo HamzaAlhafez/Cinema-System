@@ -25,6 +25,10 @@ class Employee extends Authenticatable
     {
         return $this->belongsTo(Admin::class);
     }
+    public function Ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
    
 
 

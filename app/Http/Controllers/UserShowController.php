@@ -65,7 +65,7 @@ class UserShowController extends Controller
 }
 public function todayShows()
 {
-    $today = Carbon::today();
+    $today =  Carbon::today('Asia/Damascus');
 
    
     $shows = Show::whereDate('date', $today)

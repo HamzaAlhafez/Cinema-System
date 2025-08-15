@@ -4,7 +4,7 @@
     </div>
     <ul>
         <li><a href="{{ route('employee.home') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-        <li><a href="{{ route('employee.reservations.today') }}"><i class="fa-solid fa-ticket"></i> Today's Reservations</a></li>
+        <li><a href="{{ route('employee.reservations.today') }}"><i class="fa-solid fa-ticket"></i> Today  Reservations</a></li>
         <li><a href=""><i class="fa-solid fa-burger"></i> Food Orders</a></li>
         <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
         <li>

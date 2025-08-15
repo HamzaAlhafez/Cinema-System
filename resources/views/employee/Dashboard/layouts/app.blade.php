@@ -13,7 +13,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/employee.css') }}">
-    <!-- ===== All Javascript at the bottom of the page for faster page loading ===== -->
+    <link rel="stylesheet" href="{{ asset('css/todayShows.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reservation-modal-Employee.css') }}">
+   
 
 </head>
 <body>

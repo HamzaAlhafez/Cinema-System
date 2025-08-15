@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/user/edit', [UserProfileController::class, 'edit'])
         ->name('user.edit');
+        Route::resource('tickets', ticketsController::class);
     
     
     
@@ -87,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('ticket-foods', TicketFoodController::class)->except(['index']);
       
 });
-Route::resource('tickets', ticketsController::class);
+
 
 
 
