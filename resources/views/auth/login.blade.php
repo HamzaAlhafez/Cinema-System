@@ -78,6 +78,14 @@
                                     login as admin?
                                     <a href="{{ route('admin.dashboard.login') }}">admin</a>
                                 </span>
+                                
+                        </div>
+                        <div class="bottom-links">
+                                
+                                <span>
+                                    login as Employee?
+                                    <a href="{{ route('Employee.login') }}">Employee</a>
+                                </span>
                         </div>
 
 

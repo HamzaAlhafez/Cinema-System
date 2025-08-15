@@ -19,7 +19,7 @@
                     <!-- ===== Start of Signin wrapper ===== -->
                     <div class="signin-wrapper">
                         <div class="small-dialog-headline">
-                            <h4 class="text-center">Admin Sign in</h4>
+                            <h4 class="text-center">Employee Sign in</h4>
                         </div>
 
 
@@ -27,7 +27,7 @@
                         <div class="small-dialog-content">
 
                             <!-- Start of Login form -->
-                            <form id="login_form" method="post" action="{{ route('admin.dashboard.check') }}">
+                            <form id="login_form" method="post" action="{{ route('employee.check') }}">
                                 @csrf
 
                                 <div class="form-group">
@@ -83,8 +83,8 @@
                         <div class="bottom-links">
                                 
                                 <span>
-                                    login as Employee?
-                                    <a href="{{ route('Employee.login') }}">Employee</a>
+                                    login as Admin?
+                                    <a href="{{ route('admin.dashboard.login') }}">Admin</a>
                                 </span>
                         </div>
 

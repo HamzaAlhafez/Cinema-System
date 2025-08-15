@@ -17,6 +17,10 @@ use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\TicketFoodController;
 use App\Http\Controllers\TrailerController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\EmployeeLoginController;
+use App\Http\Controllers\UserShowController;
+
+
 
 
 
@@ -31,9 +35,11 @@ use App\Http\Controllers\StatisticsController;
 |
 */
 
+
 Route::get('admin/dashboard/home', function () {
     return view('dashboard.index');
 })->name('admin.dashboard.home')->middleware('auth:admin');
+
 
 Route::get('admin/dashboard/login', [AdminLoginController::class, 'Login'])->name('admin.dashboard.login');
 Route::post('admin/dashboard/check', [AdminLoginController::class, 'CheckLogin'])->name('admin.dashboard.check');
@@ -82,6 +88,19 @@ Route::get('/statistics/yearly-revenue', [StatisticsController::class, 'yearlyRe
     Route::get('/statistics/top-categories', [StatisticsController::class, 'topCategoriesByBookings'])->name('statistics.topCategoriesMoives');
 
 });
+ 
+
+
+// Employee route
+Route::get('Employee/login', [EmployeeLoginController::class, 'Login'])->name('Employee.login');
+Route::get('Employee/home', function () {
+    return view('employee.home');
+})->name('employee.home')->middleware('auth:employee');
+Route::post('employee/check', [EmployeeLoginController::class, 'CheckLogin'])->name('employee.check');
+Route::post('employee/Logout', [EmployeeLoginController::class, 'Logout'])->name('employee.logout');
+Route::get('/employee/reservations/today', [UserShowController::class, 'todayShows'])
+    ->name('employee.reservations.today');
+
 
 
 

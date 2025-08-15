@@ -69,79 +69,80 @@ class ticketsController extends Controller
 
     public function store(Request $request)
 {
+    dd($request);
     
-    $this->VaildRequest($request);
+//     $this->VaildRequest($request);
    
     
     
 
 
-    DB::beginTransaction();
+//     DB::beginTransaction();
 
-    try {
-        $selectedSeats = array_map('intval', explode(',', $request->selected_seats));
+//     try {
+//         $selectedSeats = array_map('intval', explode(',', $request->selected_seats));
         
         
-        $this->lockAndCheckSeats($request->show_id, $selectedSeats);
-        $couponCode = $request->input('coupon_code');
+//         $this->lockAndCheckSeats($request->show_id, $selectedSeats);
+//         $couponCode = $request->input('coupon_code');
 
-        $discount = $this->handlecouponcode($request);
-        if($discount === 0 && $couponCode)
-        {
-            return redirect()->back()->with([
-                'flash' => 'error',
-                'message' => 'Booking failed: Invalid promo code. Reservation not  completed.'
-            ]);
+//         $discount = $this->handlecouponcode($request);
+//         if($discount === 0 && $couponCode)
+//         {
+//             return redirect()->back()->with([
+//                 'flash' => 'error',
+//                 'message' => 'Booking failed: Invalid promo code. Reservation not  completed.'
+//             ]);
 
-        }
-        $ticket = $this->createTicket($request, $discount);
+//         }
+//         $ticket = $this->createTicket($request, $discount);
         
-        $this->createSeatReservations($request, $ticket);
-        $this->updateShowRemainingSeats($request);
-        $this->handleLoyaltyPoints();
-        $ticket->load(['show.movie', 'show.hall', 'seatReservations']); 
+//         $this->createSeatReservations($request, $ticket);
+//         $this->updateShowRemainingSeats($request);
+//         $this->handleLoyaltyPoints();
+//         $ticket->load(['show.movie', 'show.hall', 'seatReservations']); 
 
-        $emailData = (object) [
-           'ticket' => $ticket,
-           'seats' => $ticket->seatReservations,
-           'type' => 'booking'
-       ];
-       Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
-        //   Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
+//         $emailData = (object) [
+//            'ticket' => $ticket,
+//            'seats' => $ticket->seatReservations,
+//            'type' => 'booking'
+//        ];
+//        Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
+//         //   Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
        
            
           
            
         
 
-        DB::commit();
+//         DB::commit();
         
        
-if ($couponCode) {
-    if ($discount > 0) {
-        $finalPrice = $request->final_price * (1 - ($discount / 100));
+// if ($couponCode) {
+//     if ($discount > 0) {
+//         $finalPrice = $request->final_price * (1 - ($discount / 100));
        
-        return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
-            'flash' => 'success',
-            'message' => "🎉 Booking successful! $discount% discount applied. Final price: $finalPrice$. You have been awarded 100 points! 💯✨"
-        ]);
-    } 
+//         return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
+//             'flash' => 'success',
+//             'message' => "🎉 Booking successful! $discount% discount applied. Final price: $finalPrice$. You have been awarded 100 points! 💯✨"
+//         ]);
+//     } 
       
-}
+// }
 
        
 
-return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
-    'flash' => 'success',
-    'message' => '✅Ticket booked successfully.You have been awarded 100 points! 💯✨'
-]);
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect()->back()->with([
-            'flash' => 'error',
-            'message' => 'Booking failed: '
-        ]);
-    }
+// return redirect()->route('ticket-foods.create', ['ticket_id' => $ticket->id])->with([
+//     'flash' => 'success',
+//     'message' => '✅Ticket booked successfully.You have been awarded 100 points! 💯✨'
+// ]);
+//     } catch (\Exception $e) {
+//         DB::rollBack();
+//         return redirect()->back()->with([
+//             'flash' => 'error',
+//             'message' => 'Booking failed: '
+//         ]);
+//     }
     
        
     

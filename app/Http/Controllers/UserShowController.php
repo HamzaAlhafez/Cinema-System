@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Hall;
 use App\Models\Show;
+use Carbon\Carbon;
 
 // index and search and show
 
@@ -61,6 +62,18 @@ class UserShowController extends Controller
         return redirect()->route('showsmoive.index')
             ->with(['flash' => 'error', 'message' => 'No upcoming shows found for this movie']);
     }
+}
+public function todayShows()
+{
+    $today = Carbon::today();
+
+   
+    $shows = Show::whereDate('date', $today)
+        ->with(['movie', 'hall'])
+        ->orderBy('start_time')
+        ->get();
+
+    return view('employee.Dashboard.Reservations.todayShows', compact('shows', 'today'));
 }
 
 
