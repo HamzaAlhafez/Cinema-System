@@ -5,7 +5,7 @@
     <ul>
         <li><a href="{{ route('employee.home') }}"><i class="fa-solid fa-house"></i> Dashboard</a></li>
         <li><a href="{{ route('employee.reservations.today') }}"><i class="fa-solid fa-ticket"></i> Today  Reservations</a></li>
-        <li><a href=""><i class="fa-solid fa-burger"></i> Food Orders</a></li>
+        <li><a href="{{ route('tickets.User.unconfirmed') }}"><i class="fa-solid fa-users"></i>Confirm User Attendance</a></li>
         <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
         <li>
     <form action="{{ route('employee.logout') }}" method="POST" class="logout-form">

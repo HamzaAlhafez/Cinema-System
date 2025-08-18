@@ -1,0 +1,51 @@
+.flash-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    opacity: 1; /* تظهر مباشرة بدون fade */
+    backdrop-filter: blur(5px);
+    border: none;
+}
+
+/* Success Message - أخضر فاتح */
+.flash-message.success {
+    background-color: rgba(220, 255, 225, 0.95);
+    color: #2e7d32;
+}
+
+/* Error Message - أحمر فاتح */
+.flash-message.error {
+    background-color: rgba(255, 220, 220, 0.95);
+    color: #c62828;
+}
+
+/* Close Button */
+.flash-message .close-btn {
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: inherit;
+}
+
+/* Icon Style */
+.flash-message i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flash-message {
+        left: 15px;
+        right: 15px;
+        max-width: calc(100% - 30px);
+    }
+}

@@ -1,0 +1,157 @@
+body {
+    background-color: #f4f5fa;
+    font-family: 'Poppins', sans-serif;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+/* ==== Title ==== */
+h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #5e2b97, #a86bd8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    margin: 12px auto 0;
+    background: linear-gradient(90deg, #5e2b97, #a86bd8);
+    border-radius: 2px;
+}
+
+/* ==== Table Container ==== */
+.table-container {
+    max-width: 1200px;
+    margin: auto;
+    overflow-x: auto;
+    border-radius: 14px;
+}
+
+/* ==== Table ==== */
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.custom-table thead {
+    background: linear-gradient(90deg, #5e2b97, #a86bd8);
+    color: #fff;
+}
+
+.custom-table th, .custom-table td {
+    padding: 15px 20px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.custom-table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.custom-table tbody tr {
+    transition: all 0.25s ease-in-out;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #faf4ff;
+    transform: scale(1.01);
+}
+
+/* ==== Movie Cell ==== */
+.movie-cell {
+    font-weight: 500;
+    color: #3b3b3b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==== Button ==== */
+.btn-purple {
+    background: linear-gradient(90deg, #5e2b97, #a86bd8);
+    color: #fff;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(92, 46, 145, 0.25);
+}
+
+.btn-purple:hover {
+    background: linear-gradient(90deg, #4a2275, #8e56bb);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 14px rgba(92, 46, 145, 0.3);
+}
+
+/* ==== Food List ==== */
+td p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+td span {
+    color: #aaa;
+    font-style: italic;
+}
+form input[type="text"] {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 250px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #5e2b97;
+    box-shadow: 0 0 6px rgba(158, 43, 151, 0.3);
+}
+
+/* ==== Empty State ==== */
+.no-shows-message {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 40px 30px;
+    margin-top: 40px;
+    box-shadow: 0 6px 16px rgba(92, 46, 145, 0.1);
+    border: 1px solid rgba(111, 66, 193, 0.15);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-shows-message h3 {
+    font-weight: 600;
+    font-size: 20px;
+    color: #5e2b97;
+    margin-bottom: 10px;
+}
+
+.no-shows-message p {
+    font-size: 15px;
+    color: #666;
+}

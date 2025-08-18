@@ -1,8 +1,21 @@
 @extends('employee.Dashboard.layouts.app')
 
 @section('content')
+
 <div class="container mt-5 table-container">
     <h2>Today Shows ({{ now()->timezone('Asia/Damascus')->format('F d, Y') }})</h2>
+   
+    @if($errors->any())
+    <div class="alert alert-danger" style="color: #721c24; background-color: #f8d7da; border-color: #f5c6cb;">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h5 class="alert-heading"><i class="fas fa-exclamation-circle"></i>An error occurred !</h5>
+        <ul class="mb-0">
+            @foreach($errors->all() as $error)
+                <li><strong>{{ $error }}</strong></li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     @if($shows->isEmpty())
         <div class="no-shows-message text-center py-5">
@@ -54,5 +67,35 @@
 </div>
 
 @include('employee.Dashboard.Reservations.reservation-modal-Employee')
+@if(session()->has('flash'))
+<div class="flash-message {{ session('flash') }}" id="flashMessage">
+    <span>{{ session('message') }}</span>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const flashMessage = document.getElementById('flashMessage');
+        
+        if (flashMessage) {
+            
+            setTimeout(() => {
+                flashMessage.style.opacity = '0';
+                flashMessage.style.transition = 'opacity 0.5s ease';
+                
+                
+                setTimeout(() => {
+                    flashMessage.remove();
+                }, 500);
+            }, 10000);
+            
+          
+            flashMessage.addEventListener('click', function() {
+                this.style.opacity = '0';
+                setTimeout(() => this.remove(), 500);
+            });
+        }
+    });
+</script>
+@endif
 
 @endsection

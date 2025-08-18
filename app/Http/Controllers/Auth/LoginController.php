@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Ticket;
 
 
 class LoginController extends Controller
@@ -75,12 +76,26 @@ class LoginController extends Controller
 
 
     }
+    private function hasUnratedTicket($user)
+    {
+        return Ticket::where('user_id', $user->id)
+        ->where('Booking_Status', true)
+        ->where('rated', false)
+        ->exists();
+    }
      public function login(Request $request)
     {
         $this->validator($request->all())->validate();
 
         $date=$this->GetDate($request);
-        if (Auth::attempt($date)) {
+        if (Auth::attempt($date)) { 
+            $user = Auth::user();
+            if ($this->hasUnratedTicket($user)) {
+               
+                return redirect()->route('rating.create');
+            }
+
+          
         return redirect()->route('home')->with(['flash' => 'success', 'message' => 'Signed in!']);
     } else {
         return redirect()->back()

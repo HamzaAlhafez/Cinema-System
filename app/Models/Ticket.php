@@ -15,6 +15,7 @@ class Ticket extends Model
         'Seats_Booked',
         'tickets_Price',
         'Booking_Status',
+        'rated',
         'Booking_date',
 
 
@@ -43,6 +44,10 @@ class Ticket extends Model
     public function foods()
 {
     return $this->hasMany(TicketFood::class);
+}
+public function rating()
+{
+    return $this->hasOne(Rating::class);
 }
     
   

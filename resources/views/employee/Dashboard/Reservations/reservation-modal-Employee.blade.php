@@ -13,7 +13,7 @@
         <div>Total price: <strong id="show-price"></strong></div>
     </div>
 
-    <form id="reservation-form" action="{{ route('tickets.store') }}" method="post" autocomplete="off">
+    <form id="reservation-form" action="{{ route('employee.reserve-ticket') }}" method="post" autocomplete="off">
         @csrf
         <input type="hidden" id="selected-count" name="selected_count" value="0" />
         <input type="hidden" id="final-price" name="final_price" value="0" />

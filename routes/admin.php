@@ -19,6 +19,7 @@ use App\Http\Controllers\TrailerController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\EmployeeLoginController;
 use App\Http\Controllers\UserShowController;
+use App\Http\Controllers\ticketsController;
 
 
 
@@ -100,7 +101,12 @@ Route::post('employee/check', [EmployeeLoginController::class, 'CheckLogin'])->n
 Route::post('employee/Logout', [EmployeeLoginController::class, 'Logout'])->name('employee.logout');
 Route::get('/employee/reservations/today', [UserShowController::class, 'todayShows'])
     ->name('employee.reservations.today');
-
+ Route::post('/employee/reserve-ticket', [ticketsController::class, 'ReserveTicketByEmployee'])
+    ->name('employee.reserve-ticket');
+  
+    Route::get('/tickets/User/unconfirmed', [ticketsController::class, 'getUnconfirmedTickets'])
+    ->name('tickets.User.unconfirmed');
+    Route::post('/attendance/confirm/{ticket}', [ticketsController::class, 'confirmAttendance'])->name('attendance.confirm');
 
 
 

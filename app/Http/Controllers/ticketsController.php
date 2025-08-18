@@ -65,7 +65,104 @@ class ticketsController extends Controller
 
 
     }
+    public function ReserveTicketByEmployee(Request $request)
+    {
+        $this->VaildRequest($request);
+        DB::beginTransaction();
+        try 
+        {
+            $selectedSeats = array_map('intval', explode(',', $request->selected_seats));
+            $this->lockAndCheckSeats($request->show_id, $selectedSeats);
+            $ticket = $this->createTicketByEmployee($request);
+            $this->createSeatReservations($request, $ticket);
+            $this->updateShowRemainingSeats($request);
+            DB::commit();
 
+            return redirect()->back()->with([
+                'flash' => 'success',
+                'message' => '✅Ticket booked successfully✨ '
+            ]);
+
+        
+        
+            
+            
+
+
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with([
+                'flash' => 'error',
+                'message' => 'Booking failed: '
+            ]);
+        }
+
+        
+
+    }
+    public function confirmAttendance($ticketId)
+{
+    try 
+    {
+        $ticket = Ticket::findOrFail($ticketId);
+        $ticket->Booking_Status = true; 
+        $ticket->save();
+        
+        return redirect()->back()->with([
+            'flash' => 'success',
+            'message' => 'Attendance confirmed successfully - Ticket ID: ' . $ticketId
+        ]);
+    }
+    catch (\Exception $e) {
+        return redirect()->back()->with([
+            'flash' => 'error',
+            'message' => 'Failed to confirm attendance. Please try again or contact support'
+        ]);
+    }
+}
+
+public function getUnconfirmedTickets(Request $request)
+{
+    $today = Carbon::today('Asia/Damascus');
+    try 
+    {
+        $query = Ticket::with([
+            'user:id,name,phone',
+            'show.movie:id,title',
+            'seatReservations:id,ticket_id,seat_number',
+            'foods.food:id,name'
+        ])
+        ->where('Booking_Status', false)
+        ->whereHas('show', function ($q) use ($today) {
+            $q->whereDate('date', $today);
+        });
+
+        if ($request->has('ticket_id') && !empty($request->ticket_id)) {
+            $query->where('id', $request->ticket_id);
+        }
+
+        $tickets = $query->get();
+
+       
+
+        return view('employee.Dashboard.TicketsUconfirmed.ConfirmUserAttendance', compact('tickets'));
+    }
+    catch (\Exception $e) {
+        return redirect()->back()->with([
+            'flash' => 'error',
+            'message' => 'Failed to retrieve ticket data. Please try again later'
+        ]);
+    }
+}
+    
+
+        
+       
+        
+    
+   
+    
 
     public function store(Request $request)
 {
@@ -214,6 +311,7 @@ private function createTicket(Request $request,$discount): Ticket
     return Ticket::create([
         'show_id' => $request->show_id,
         'user_id' => Auth::id(),
+        'employee_id' => null,
         'Seats_Booked' => $request->selected_count,
         'tickets_Price' => $discount > 0 
     ? $request->final_price * (1 - ($discount / 100))
@@ -224,6 +322,24 @@ private function createTicket(Request $request,$discount): Ticket
         
     ]);
 }
+private function createTicketByEmployee(Request $request): Ticket
+{
+    return Ticket::create([
+        'show_id' => $request->show_id,
+        'user_id' => null,
+        'employee_id' => Auth::guard('employee')->user()->id,
+        'Seats_Booked' => $request->selected_count,
+        'tickets_Price' => $request->final_price,
+        'Booking_Status' => true,
+        'Booking_date' => now()
+   
+    
+        
+        
+    ]);
+}
+
+
 private function lockAndCheckSeats(int $showId, array $seatNumbers): void
 {
     

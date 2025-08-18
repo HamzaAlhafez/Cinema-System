@@ -70,6 +70,8 @@
                                 <a href="{{route('tickets.index')}}">My Reservations</a>
                                 <a href="{{route('promocodes.Show')}}">Explore Coupons</a>
                                 <a href="{{route('promocodes.Show.Mypromocodes')}}">MY Coupons</a>
+                                <a href="{{route('my.ratings')}}">MY Rating</a>
+                               
                                 <a>My points {{ Auth::user()->loyalty_points}}</a>
                                 
 
