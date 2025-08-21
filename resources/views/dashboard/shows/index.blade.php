@@ -73,7 +73,7 @@
                           use   App\Models\Movie;
                           use   App\Models\Hall;
                           $moives=Movie::all();
-                          $halls=Hall::all();
+                          $halls=Hall::whereDoesntHave('hallMaintenances')->get();
 
 
 

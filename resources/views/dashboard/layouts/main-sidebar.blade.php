@@ -123,6 +123,9 @@
     <a class="slide-item" href="{{ route('statistics.topCategoriesMoives') }}">
     top Categories Moives
     </a>
+    <a class="slide-item" href="{{ route('statistics.UsersSatisfaction') }}">
+    Users Satisfaction
+    </a>
     
         </li>
        

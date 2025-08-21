@@ -1,6 +1,8 @@
 @extends('employee.Dashboard.layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/todayShows.css') }}">
+<link rel="stylesheet" href="{{ asset('css/reservation-modal-Employee.css') }}">
 
 <div class="container mt-5 table-container">
     <h2>Today Shows ({{ now()->timezone('Asia/Damascus')->format('F d, Y') }})</h2>
@@ -67,35 +69,7 @@
 </div>
 
 @include('employee.Dashboard.Reservations.reservation-modal-Employee')
-@if(session()->has('flash'))
-<div class="flash-message {{ session('flash') }}" id="flashMessage">
-    <span>{{ session('message') }}</span>
-</div>
+@include('employee.flash-message')
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const flashMessage = document.getElementById('flashMessage');
-        
-        if (flashMessage) {
-            
-            setTimeout(() => {
-                flashMessage.style.opacity = '0';
-                flashMessage.style.transition = 'opacity 0.5s ease';
-                
-                
-                setTimeout(() => {
-                    flashMessage.remove();
-                }, 500);
-            }, 10000);
-            
-          
-            flashMessage.addEventListener('click', function() {
-                this.style.opacity = '0';
-                setTimeout(() => this.remove(), 500);
-            });
-        }
-    });
-</script>
-@endif
 
 @endsection

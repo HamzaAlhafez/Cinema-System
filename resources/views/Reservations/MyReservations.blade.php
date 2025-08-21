@@ -46,14 +46,24 @@
                         </div>
 
                         <div class="ticket-body">
-                            <div class="details-grid">
-                                <div class="detail-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <div>
-                                        <small>Date</small>
-                                        <div>{{$ticket->show->date->format('d M Y')}}</div>
-                                    </div>
-                                </div>
+                        <div class="details-grid">
+                        <div class="detail-item">
+        <i class="fas fa-hashtag"></i>
+        <div>
+            <small>Ticket No</small>
+            <div>#{{$ticket->id}}</div>
+        </div>
+    </div>
+
+    <div class="detail-item">
+        <i class="fas fa-calendar-alt"></i>
+        <div>
+            <small>Date</small>
+            <div>{{$ticket->show->date->format('d M Y')}}</div>
+        </div>
+    </div>
+    
+                           
                                 <div class="detail-item">
                                     <i class="fas fa-clock"></i>
                                     <div>

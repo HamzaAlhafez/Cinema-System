@@ -16,6 +16,8 @@ class Employee extends Authenticatable
         'name',
         'phone',
         'email',
+        'salary',
+        'hire_date',
         'password',
         'admin_id',
         
@@ -28,6 +30,10 @@ class Employee extends Authenticatable
     public function Ticket()
     {
         return $this->hasMany(Ticket::class);
+    }
+    public function HallMaintenances()
+    {
+        return $this->hasMany(HallMaintenance::class);
     }
    
 

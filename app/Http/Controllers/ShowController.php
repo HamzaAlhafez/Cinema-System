@@ -134,10 +134,11 @@ if ($shows->count() > 0) {
         $Show->save();
         $Show->load(['movie', 'hall']);
         $users = User::all();
+        foreach ($users as $user) {
+            Mail::to($user->email)->queue(new EmailService($Show, 'show'));
+        }
 
-foreach ($users as $user) {
-    Mail::to($user->email)->send(new EmailService($Show, 'show'));
-}
+
         // Mail::to('hamzaalafez@gmail.com')->send(new EmailService($Show, 'show'));
        
 
@@ -157,33 +158,42 @@ foreach ($users as $user) {
 
 
 
-    public function update(Request $request,$id)
-    {
-              $this->VaildRequest($request);
+public function update(Request $request, $id)
+{
+    $this->VaildRequest($request);
 
-try {
-    $hall=Hall::findorfail($request->hall_id);
-    $Show =Show::findorfail($id);
-   
+    try {
+        $hall = Hall::findOrFail($request->hall_id);
+        $show = Show::findOrFail($id);
+        
+       
+        $totalBookedSeats = $show->Ticket()->sum('Seats_Booked');
+        
+        
+        $remainingSeats = $hall->Capacity - $totalBookedSeats;
+        
+        
+        if ($remainingSeats < 0) {
+            session()->flash('capacity_error');
+        }
 
-    
-   
-$Show->movie_id = strip_tags($request->input('movie_id'));
-$Show->hall_id =strip_tags($request->input('hall_id'));
-$Show->date = strip_tags($request->input('date'));
-$Show->price = strip_tags($request->input('price'));
-$Show->start_time= strip_tags($request->input('start_time'));
-$Show->end_time= strip_tags($request->input('End_time'));
-$Show->remaining_seats=$hall->Capacity;
-    $Show->save();
-} catch (\Exception $e) {
-     return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-
-}
-session()->flash('edit');
-return redirect()->route('shows.index');
-
+        $show->movie_id = strip_tags($request->input('movie_id'));
+        $show->hall_id = strip_tags($request->input('hall_id'));
+        $show->date = strip_tags($request->input('date'));
+        $show->price = strip_tags($request->input('price'));
+        $show->start_time = strip_tags($request->input('start_time'));
+        $show->end_time = strip_tags($request->input('End_time'));
+        $show->remaining_seats = $remainingSeats;
+        
+        $show->save();
+        
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+    
+    session()->flash('edit');
+    return redirect()->route('shows.index');
+}
 
 
     public function destroy(string $id)

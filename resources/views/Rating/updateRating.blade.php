@@ -18,6 +18,7 @@
         <form id="ratingForm" action="{{ route('rating.update', $rating->id) }}" method="POST">
             @csrf
             @method('PUT')
+            <input type="hidden" name="ticket_id" value="{{ $rating->ticket_id  }}">
 
             <div class="rating-grid">
                 @php

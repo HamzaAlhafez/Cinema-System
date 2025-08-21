@@ -59,7 +59,7 @@ class CinemaConversation extends Conversation
             return;
         }
         
-        $this->say("Sorry, I didn't understand that. Please type 'start' to see the main menu.");
+        $this->showWelcomeMessage();
     }
 
     private function handleTextCommand($message)
@@ -83,6 +83,7 @@ class CinemaConversation extends Conversation
         switch ($command) {
             case 'hello':
                 $this->say("👋 Hello there! How can I help you today?");
+                $this->showWelcomeMessage();
                 
                 break;
             case 'start':

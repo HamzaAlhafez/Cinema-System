@@ -21,10 +21,11 @@ class ticketsController extends Controller
 {
     
     public function index()
+{
+    try 
     {
-        try 
-        {
-            $tickets = Ticket::where('user_id', auth()->id())
+        $tickets = Ticket::where('user_id', auth()->id())
+            ->where('Booking_Status', false) 
             ->whereHas('show', function($query) {
                 $query->where('date', '>', now()->toDateString())
                       ->orWhere(function($q) {
@@ -34,14 +35,14 @@ class ticketsController extends Controller
             })
             ->with('show.movie', 'show.hall')
             ->get();
-            return view('Reservations.MyReservations', compact('tickets'));
 
-        }catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again.']);
+        return view('Reservations.MyReservations', compact('tickets'));
 
-
-        }
+    } catch (\Exception $e) {
+        return redirect()->back()
+            ->withErrors(['error' => 'An unexpected error occurred. Please try again.']);
     }
+}
        
         
 

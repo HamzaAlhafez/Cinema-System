@@ -14,10 +14,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/employee.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/todayShows.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/reservation-modal-Employee.css') }}">
+   
+    
     <link rel="stylesheet" href="{{ asset('css/FlashMessage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/ConfirmUserAttendance.css') }}">
+   
+    
     
    
 

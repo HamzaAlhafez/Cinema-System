@@ -20,5 +20,9 @@ class Hall extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    public function HallMaintenances()
+    {
+        return $this->hasMany(HallMaintenance::class);
+    }
     
 }

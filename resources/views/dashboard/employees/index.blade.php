@@ -57,11 +57,13 @@
                     <div class="table-responsive">
                         <table class="table text-md-nowrap" id="example2">
                             <thead>
+                            
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>salary</th>
                                     <th>Created By</th>
                                     <th>Actions</th>
                                 </tr>
@@ -73,9 +75,10 @@
                                     <td>{{$employee->name}}</td>
                                     <td>{{$employee->email}}</td>
                                     <td>{{$employee->phone}}</td>
+                                    <td>{{$employee->salary . '$'}}</td>
                                     <td>{{$employee->admin->name ?? 'N/A'}}</td>
                                     <td>
-                                        
+                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"  data-toggle="modal" href="#edit{{$employee->id}}"><i class="las la-pen"></i></a>
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"  data-toggle="modal" href="#delete{{$employee->id}}"><i class="las la-trash"></i></a>
 
 
@@ -83,7 +86,8 @@
                                     </td>
                                    
                                 </tr>
-                                @include('dashboard.employees.delete', ['employee' => $employee])
+                                @include('dashboard.employees.delete')
+                                @include('dashboard.employees.edit')
                                 @endforeach
                             </tbody>
                         </table>

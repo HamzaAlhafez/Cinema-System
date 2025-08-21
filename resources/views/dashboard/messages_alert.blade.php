@@ -178,5 +178,15 @@
 
         </script>
     @endif
+    @if ($errors->has('capacity_error'))
+    <script>
+        window.onload = function() {
+            notif({
+                msg: "Cannot reduce hall capacity below the number of booked ",
+                type: "error"
+            });
+        }
+    </script>
+@endif
 
     

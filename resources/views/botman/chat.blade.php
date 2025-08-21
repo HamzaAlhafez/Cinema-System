@@ -1,4 +1,3 @@
-
 @extends('layouts.layout')
 
 @section('content')
@@ -67,9 +66,7 @@
                                 <div class="d-flex">
                                     <div class="me-4">
                                         <i class="fas fa-phone me-2 text-primary"></i>(+963) 953248544
-
-
-</div>
+                                    </div>
                                     <div>
                                         <i class="fas fa-envelope me-2 text-primary"></i>support@cinema.com
                                     </div>
@@ -97,27 +94,29 @@
     </div>
 </div>
 
-
-
 <script>
     var botmanWidget = {
         frameEndpoint: "{{ url('/botman/chat') }}",
         chatServer: "{{ url('/botman') }}",
         title: 'Support Chat',
-        mainColor: '#408591',
-        bubbleBackground: '#408591',
+        mainColor: '#2A8DFF',            // أزرق عصري داكن
+        bubbleBackground: '#2A8DFF',    // نفس اللون لزر الفقاعة
+        bubbleAvatarUrl: '',            // يمكن تضيف صورة شعار هنا لو تحب
         introMessage: 'Hello! How can I assist you today?',
-        desktopHeight: 500,
-        desktopWidth: 400,
+        desktopHeight: 600,             // تكبير الطول
+        desktopWidth: 480,              // تكبير العرض
+        mobileHeight: '70%',
+        mobileWidth: '90%',
         aboutLink: 'https://cinema-system.com',
         aboutText: 'Cinema Support System',
-        autoOpen: true,
-        mobileHeight: '70%',
-        mobileWidth: '90%'
+        autoOpen: false                 // لا تفتح تلقائياً
     };
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+
 @endsection

@@ -1,0 +1,150 @@
+body {
+    background: #f4f5fb;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* الكارد */
+.account-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px;
+    max-width: 700px;
+    margin: 60px auto;
+    box-shadow: 0 8px 25px rgba(106, 61, 133, 0.15);
+    transition: all 0.4s ease;
+}
+
+.account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(106, 61, 133, 0.25);
+}
+
+/* الهيدر */
+.account-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.account-header i {
+    font-size: 32px;
+    color: #6a3d85;
+}
+
+.account-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #6a3d85;
+    letter-spacing: 1px;
+}
+
+/* فورم */
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Grid للحقول */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-full {
+    grid-column: span 2;
+}
+
+/* الحقول */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 14px;
+}
+
+.form-input {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 14px 45px 14px 15px;
+    font-size: 15px;
+    outline: none;
+    background: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #6a3d85;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(106, 61, 133, 0.2);
+}
+
+/* أيقونات داخل الحقول */
+.form-group i {
+    position: absolute;
+    right: 15px;
+    top: 42px;
+    color: #6a3d85;
+    font-size: 16px;
+}
+
+/* زر التحديث */
+.btn-update {
+    background: linear-gradient(135deg, #6a3d85, #9551d4);
+    color: #fff;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(149, 81, 212, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-update:hover {
+    background: linear-gradient(135deg, #9551d4, #6a3d85);
+    box-shadow: 0 10px 30px rgba(106, 61, 133, 0.5);
+    transform: scale(1.05);
+}
+
+/* Animation */
+.animate-fadein {
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-full {
+        grid-column: span 1;
+    }
+}

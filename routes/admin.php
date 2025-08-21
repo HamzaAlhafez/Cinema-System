@@ -20,6 +20,7 @@ use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\EmployeeLoginController;
 use App\Http\Controllers\UserShowController;
 use App\Http\Controllers\ticketsController;
+use App\Http\Controllers\HallMaintenanceController;
 
 
 
@@ -65,6 +66,8 @@ Route::get('shows/getAvailableHalls', [ShowController::class, 'getAvailableHalls
 
 Route::post('shows/search', [ShowController::class, 'Search'])->name('shows.Search');
 Route::resource('employees', EmployeeController::class);
+Route::patch('/employee/{id}/update-salary', [EmployeeController::class, 'updateSalary'])
+    ->name('employee.update-salary');
 Route::post('employees/search', [EmployeeController::class, 'Search'])->name('employees.search');
 Route::resource('Admins', AdminController::class);
 Route::get('admin/dashboard/ChangePassword', [AdminController::class, 'ShowChangePasswordForm'])->name('admin.dashboard.ChangePassword');
@@ -87,6 +90,8 @@ Route::get('/statistics/yearly-revenue', [StatisticsController::class, 'yearlyRe
     ->name('statistics.topUsersPoints');
     Route::get('/statistics/top-selling-movies', [StatisticsController::class, 'topSellingMovies'])->name('statistics.topSellingMovies');
     Route::get('/statistics/top-categories', [StatisticsController::class, 'topCategoriesByBookings'])->name('statistics.topCategoriesMoives');
+    Route::get('/statistics/Users-satisfaction', [StatisticsController::class, 'UsersSatisfaction'])->name('statistics.UsersSatisfaction');
+   
 
 });
  
@@ -94,19 +99,43 @@ Route::get('/statistics/yearly-revenue', [StatisticsController::class, 'yearlyRe
 
 // Employee route
 Route::get('Employee/login', [EmployeeLoginController::class, 'Login'])->name('Employee.login');
-Route::get('Employee/home', function () {
-    return view('employee.home');
-})->name('employee.home')->middleware('auth:employee');
 Route::post('employee/check', [EmployeeLoginController::class, 'CheckLogin'])->name('employee.check');
-Route::post('employee/Logout', [EmployeeLoginController::class, 'Logout'])->name('employee.logout');
-Route::get('/employee/reservations/today', [UserShowController::class, 'todayShows'])
-    ->name('employee.reservations.today');
- Route::post('/employee/reserve-ticket', [ticketsController::class, 'ReserveTicketByEmployee'])
-    ->name('employee.reserve-ticket');
-  
+Route::middleware(['auth:employee'])->group(function () {
+
+    Route::get('Employee/home', function () {
+        return view('employee.home');
+    })->name('employee.home');
+
+    Route::post('employee/Logout', [EmployeeLoginController::class, 'Logout'])
+        ->name('employee.logout');
+
+    Route::get('/employee/account', [EmployeeController::class, 'ShowMyAccount'])
+        ->name('employee.account');
+
+    Route::get('/employee/Change/Password', [EmployeeController::class, 'ShowChangePassword'])
+        ->name('employee.Change.Password');
+
+    Route::patch('/employee/account/update', [EmployeeController::class, 'updateAccount'])
+        ->name('employee.account.update');
+
+    Route::patch('/employee/change-password', [EmployeeController::class, 'UpdatePassword'])
+        ->name('employee.password.update');
+
+    Route::get('/employee/reservations/today', [UserShowController::class, 'todayShows'])
+        ->name('employee.reservations.today');
+
+    Route::post('/employee/reserve-ticket', [ticketsController::class, 'ReserveTicketByEmployee'])
+        ->name('employee.reserve-ticket');
+
     Route::get('/tickets/User/unconfirmed', [ticketsController::class, 'getUnconfirmedTickets'])
-    ->name('tickets.User.unconfirmed');
-    Route::post('/attendance/confirm/{ticket}', [ticketsController::class, 'confirmAttendance'])->name('attendance.confirm');
+        ->name('tickets.User.unconfirmed');
+
+    Route::post('/attendance/confirm/{ticket}', [ticketsController::class, 'confirmAttendance'])
+        ->name('attendance.confirm');
+
+    Route::resource('HallMaintenances', HallMaintenanceController::class);
+});
+
 
 
 

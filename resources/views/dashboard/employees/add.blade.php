@@ -23,6 +23,9 @@
                     <input type="number" class="form-control" id="phone" name="phone"style=" height: 30px"
                         placeholder="phone .." required />
 
+                        <label for="salary">salary</label>
+                        <input type="number" class="form-control" id="salary" name="salary" style="height:30px" placeholder="salary .." step="0.01" required />
+
 
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" style=" height: 30px" autocomplete="new-password"

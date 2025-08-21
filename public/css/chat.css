@@ -82,3 +82,38 @@
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+ .botman-chat-widget-bubble {
+    background-color: #2A8DFF !important;
+    box-shadow: 0 4px 12px rgba(42, 141, 255, 0.6);
+    border-radius: 50% !important;
+    width: 68px !important;
+    height: 68px !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    transition: background-color 0.3s ease;
+}
+.botman-chat-widget-bubble:hover {
+    background-color: #1060d8 !important;
+    box-shadow: 0 6px 20px rgba(16, 96, 216, 0.8);
+}
+.botman-chat-widget-bubble i {
+    font-size: 32px !important;
+    line-height: 68px !important;
+}
+
+
+.botman-chat-widget-frame {
+    border-radius: 12px !important;
+    box-shadow: 0 0 20px rgba(42, 141, 255, 0.3) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.botman-chat-widget-header {
+    background-color: #2A8DFF !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 1.4rem !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
