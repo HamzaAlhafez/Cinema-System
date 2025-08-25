@@ -12,6 +12,9 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{Movie, Hall, Show, Ticket, Promocode, PurchasePromocode, SeatReservation, User};
 use Carbon\Carbon;
+use App\Services\HuggingFaceService;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request; 
 
 class ChatbotController extends Controller
 {
@@ -61,6 +64,7 @@ class CinemaConversation extends Conversation
         
         $this->showWelcomeMessage();
     }
+
 
     private function handleTextCommand($message)
     {

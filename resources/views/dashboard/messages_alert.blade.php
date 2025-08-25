@@ -178,6 +178,17 @@
 
         </script>
     @endif
+    @if (session()->has('FoodHasTiket'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "the Food cannot be deleted bacause it is linked to a Tiket",
+                    type: "error"
+                });
+            }
+
+        </script>
+    @endif
     @if ($errors->has('capacity_error'))
     <script>
         window.onload = function() {

@@ -134,12 +134,17 @@ if ($shows->count() > 0) {
         $Show->save();
         $Show->load(['movie', 'hall']);
         $users = User::all();
-        foreach ($users as $user) {
-            Mail::to($user->email)->queue(new EmailService($Show, 'show'));
-        }
+        //with queue
+        // foreach ($users as $user) {
+        //     Mail::to($user->email)->queue(new EmailService($Show, 'show'));
+        // }
+        // without queue
+        // foreach ($users as $user) {
+        //     Mail::to($user->email)->send(new EmailService($Show, 'show'));
+        // }
 
 
-        // Mail::to('hamzaalafez@gmail.com')->send(new EmailService($Show, 'show'));
+       
        
 
 

@@ -10,14 +10,9 @@ bootstrap/cache/*
 
 .env.backup
 .env.production
+.env
 
-# Dependencies
-/node_modules
-/vendor
-composer.lock
-composer.phar
-package-lock.json
-yarn.lock
+
 
 # Build assets
 /public/hot

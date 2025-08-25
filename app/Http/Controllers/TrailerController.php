@@ -33,15 +33,7 @@ class TrailerController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'trailer_url' => [
-        //         'required',
-        //         'url',
-        //         'max:255',
-        //         'unique:trailers',
-        //         'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/'
-        //     ],
-        // ]);
+       
         $request->validate([
             'trailer_url' => ['required', 'min:1', 'max:255','url','unique:trailers','regex:/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/'],
             'movie_id' => ['required', Rule::exists(Movie::class, 'id')],

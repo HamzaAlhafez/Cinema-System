@@ -13,6 +13,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\EnsureUserHasRatedTickets;
+use Illuminate\Http\Request; 
+
+
 
 
 
@@ -100,12 +103,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/ratings/{id}', [RatingController::class, 'update'])->name('rating.update');
     });
 });
-
-
-
-
-
-
 
 
 

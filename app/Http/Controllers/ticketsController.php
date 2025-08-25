@@ -198,15 +198,15 @@ public function getUnconfirmedTickets(Request $request)
         $this->createSeatReservations($request, $ticket);
         $this->updateShowRemainingSeats($request);
         $this->handleLoyaltyPoints();
-        $ticket->load(['show.movie', 'show.hall', 'seatReservations']); 
+    //     $ticket->load(['show.movie', 'show.hall', 'seatReservations']); 
 
-        $emailData = (object) [
-           'ticket' => $ticket,
-           'seats' => $ticket->seatReservations,
-           'type' => 'booking'
-       ];
-       Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
-        //   Mail::to('hamzaalafez@gmail.com')->send(new EmailService($emailData, 'booking'));
+    //     $emailData = (object) [
+    //        'ticket' => $ticket,
+    //        'seats' => $ticket->seatReservations,
+    //        'type' => 'booking'
+    //    ];
+    //    Mail::to(auth()->user()->email)->send(new EmailService($emailData, 'booking'));
+        
        
            
           

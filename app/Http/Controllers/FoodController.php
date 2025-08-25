@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\TicketFood;
 use App\Models\FoodCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -155,6 +156,14 @@ public function SaveImage($name,$image,$folder)
     {
         try {
             $to_delete =Food::findorfail($id);
+            $FoodCategorycount=TicketFood::where('food_id', $to_delete->id)->count();
+            
+            
+            if ($FoodCategorycount > 0 && $to_delete->stock > 0 ) {
+                session()->flash('FoodHasTiket');
+                return redirect()->route('foods.index');
+            }
+
             $destiantion='imagesfoods/food/'.$to_delete->image;
             if(file::exists($destiantion))
             {
